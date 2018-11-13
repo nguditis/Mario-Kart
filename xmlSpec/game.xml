@@ -1,0 +1,51 @@
+<?xml version = "1.0"?>
+<GameData>
+<!-- screenTitle is also used to identify you and your animation.
+     So make sure to include your name as part of the screenTitle -->
+<title>Varsha's Skyline</title>
+<maxStringSize>50</maxStringSize>
+
+<frameCapOn>true</frameCapOn>
+<period>17</period>
+
+<maxFrames>30</maxFrames>
+<username>Varsha Chauhan</username>
+
+<view>
+  <width>1000</width>
+  <height>800</height>
+  <loc x="0" y="0"/>
+</view>
+
+<background>
+  <width>1000</width>
+  <height>800</height>
+</background>
+
+
+<font name="font">
+  <file>fonts/arial.ttf</file>
+  <size>24</size>
+  <red>255</red>
+  <green>255</green>
+  <blue>0</blue>
+  <alpha>0</alpha>
+</font>
+
+<sky>
+  <file>assets/Super Mario Kart/tracks/Doughnut Plains 1/Donut Plains 1 track full.png</file>
+  <startLoc x="0" y="0"/>
+  <speedX>200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</sky>
+
+<road>
+  <file>assets/sky.png</file>
+  <startLoc x="0" y="0"/>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</road>
+
+</GameData>
