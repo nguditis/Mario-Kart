@@ -33,7 +33,7 @@
 </font>
 
 <sky>
-  <file>assets/Super Mario Kart/tracks/Doughnut Plains 1/Donut Plains 1 track full.png</file>
+  <file>assets/tracks/Doughnut Plains 1/Donut Plains 1 track full.png</file>
   <startLoc x="0" y="0"/>
   <speedX>200</speedX>
   <speedY>200</speedY>
