@@ -2,14 +2,14 @@
 <GameData>
 <!-- screenTitle is also used to identify you and your animation.
      So make sure to include your name as part of the screenTitle -->
-<title>Varsha's Skyline</title>
+<title>Nathan's Racers</title>
 <maxStringSize>50</maxStringSize>
 
 <frameCapOn>true</frameCapOn>
 <period>17</period>
 
 <maxFrames>30</maxFrames>
-<username>Varsha Chauhan</username>
+<username>Nathan Guditis</username>
 
 <view>
   <width>1000</width>
