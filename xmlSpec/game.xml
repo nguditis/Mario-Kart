@@ -32,20 +32,30 @@
   <alpha>0</alpha>
 </font>
 
-<sky>
-  <file>assets/tracks/Doughnut Plains 1/Donut Plains 1 track full.png</file>
+<road>
+  <file>assets/tracks/Doughnut_Plains_1/Donut_Plains_1_track_full.png</file>
   <startLoc x="0" y="0"/>
   <speedX>200</speedX>
   <speedY>200</speedY>
   <transparency>true</transparency>
-</sky>
+</road>
 
-<road>
+<sky>
   <file>assets/sky.png</file>
   <startLoc x="0" y="0"/>
   <speedX>0</speedX>
   <speedY>0</speedY>
   <transparency>true</transparency>
-</road>
+</sky>
+
+<tracks>
+    <Doughnut_Plains_1>
+        <full>assets/tracks/Doughnut_Plains_1/Donut_Plains_1_track_full.png</full>
+    </Doughnut_Plains_1>
+
+
+</tracks>
+
+
 
 </GameData>

@@ -11,8 +11,8 @@ AngularSprite::AngularSprite( const std::string& name) :
                     Gamedata::getInstance().getXmlInt(name+"/speedY"))
            ),
   image( ImageFactory::getInstance().getImage(name) ),
-  surface1( IMG_Load(Gamedata::getInstance().getXmlStr("road/file").c_str())),
-  surface2( IMG_Load(Gamedata::getInstance().getXmlStr("sky/file").c_str())),
+  surface1( IMG_Load(Gamedata::getInstance().getXmlStr("sky/file").c_str())),
+  surface2( IMG_Load(Gamedata::getInstance().getXmlStr("road/file").c_str())),
  // pixels ((Uint32*)surface->pixels),
   worldWidth(Gamedata::getInstance().getXmlInt("background/width")),
   worldHeight(Gamedata::getInstance().getXmlInt("background/height"))
