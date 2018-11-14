@@ -67,6 +67,28 @@ void AngularSprite::update(Uint32 ticks, int direction)
       fNear += 0.1f * ticks;
 
     }
+    else if (direction == 7)
+    {
+        //fFoVHalf -= 0.2f * ticks;
+        fFar -= 0.1f * ticks;
+    }
+    else if (direction == 8)
+    {
+        //fFoVHalf += 0.2f * ticks;
+        fFar += 0.1f * ticks;
+        
+    }
+    else if (direction == 9)
+    {
+        //fFoVHalf -= 0.2f * ticks;
+        fFoVHalf -= 0.1f * ticks;
+    }
+    else if (direction == 10)
+    {
+        //fFoVHalf += 0.2f * ticks;
+        fFoVHalf += 0.1f * ticks;
+        
+    }
 
   }
 void AngularSprite::draw(SDL_Renderer *renderer) const{

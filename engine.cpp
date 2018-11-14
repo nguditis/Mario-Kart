@@ -107,16 +107,38 @@ void Engine::play() {
         //static_cast<Player*>(player)->down();
        static_cast<AngularSprite*>(bikers[0])->update(10,1);
       }
-      if (keystate[SDL_SCANCODE_Z]) {
+      if (keystate[SDL_SCANCODE_Y]) {
         //static_cast<Player*>(player)->down();
         static_cast<AngularSprite*>(bikers[0])->update(10,5);
 
       }
-      if (keystate[SDL_SCANCODE_C]) {
+      if (keystate[SDL_SCANCODE_H]) {
         //static_cast<Player*>(player)->down();
         static_cast<AngularSprite*>(bikers[0])->update(10,6);
 
       }
+        if (keystate[SDL_SCANCODE_U]) {
+            //static_cast<Player*>(player)->down();
+            static_cast<AngularSprite*>(bikers[0])->update(10,7);
+            
+        }
+        if (keystate[SDL_SCANCODE_J]) {
+            //static_cast<Player*>(player)->down();
+            static_cast<AngularSprite*>(bikers[0])->update(10,8);
+            
+        }
+        if (keystate[SDL_SCANCODE_I]) {
+            //static_cast<Player*>(player)->down();
+            static_cast<AngularSprite*>(bikers[0])->update(10,9);
+            
+        }
+        if (keystate[SDL_SCANCODE_K]) {
+            //static_cast<Player*>(player)->down();
+            static_cast<AngularSprite*>(bikers[0])->update(10,10);
+            
+        }
+
+
       draw();
       //update(ticks);
       if ( makeVideo ) {
