@@ -38,7 +38,7 @@ void Engine::draw() const {
   int fps = 0;
   std::stringstream ss;
 
-  std::string name = "Varsha";
+  std::string name = "Nathan";
   fps = clock.getFps();
   ss << "Current FPS: " << fps;
 

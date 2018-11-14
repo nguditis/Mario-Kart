@@ -70,6 +70,9 @@ void AngularSprite::update(Uint32 ticks, int direction)
 
   }
 void AngularSprite::draw(SDL_Renderer *renderer) const{
+    
+    SDL_Surface *surface3 = new SDL_Surface;
+    
   // Create Frustum corner points
     float fFarX1 = fWorldX + cosf(fWorldA - fFoVHalf) * fFar;
     float fFarY1 = fWorldY + sinf(fWorldA - fFoVHalf) * fFar;
@@ -87,6 +90,8 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
 
     SDL_LockSurface(surface1);
     SDL_LockSurface(surface2);
+    SDL_LockSurface(surface3);
+    
     Uint32 *pixels1 = (Uint32*)surface1->pixels;
     Uint32 *pixels2 = (Uint32*)surface2->pixels;
 
@@ -131,9 +136,14 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
           fSampleY = 1024;
           SDL_RenderDrawPoint(renderer, fSampleX, fSampleY);
         }
-        if (fSampleX < 0) {fSampleX = 0;}
-        if (fSampleY < 0) {fSampleY = 0;}
-
+          if (fSampleX < 0) {
+              fSampleX = 0;
+              SDL_RenderDrawPoint(renderer, fSampleX, fSampleY);
+          }
+          if (fSampleY < 0) {
+              fSampleY = 0;
+              SDL_RenderDrawPoint(renderer, fSampleX, fSampleY);
+          }
         //std::cout<<fSampleX<<" "<<fSampleY<<std::endl;
         Uint32 pixel1 = pixels1[(int(fSampleY) * surface1->pitch / 4) + int(fSampleX)];
         Uint32 pixel2 = pixels2[(int(fSampleY) * surface2->pitch / 4) + int(fSampleX)];
@@ -156,6 +166,8 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
     }
     SDL_UnlockSurface(surface2);
     SDL_UnlockSurface(surface1);
+    SDL_UnlockSurface(surface3);
+    
     //SDL_Texture* texture = image->getTexture();//SDL_CreateTextureFromSurface( renderer,getSurface());
 
 }
