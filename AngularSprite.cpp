@@ -76,25 +76,25 @@ void AngularSprite::update(Uint32 ticks, int direction)
     {
         //fFoVHalf += 0.2f * ticks;
         fFar += 0.1f * ticks;
-        
+
     }
     else if (direction == 9)
     {
         //fFoVHalf -= 0.2f * ticks;
-        fFoVHalf -= 0.1f * ticks;
+        fFoVHalf -= 0.1f;
     }
     else if (direction == 10)
     {
         //fFoVHalf += 0.2f * ticks;
-        fFoVHalf += 0.1f * ticks;
-        
+        fFoVHalf += 0.1f;
+
     }
 
   }
 void AngularSprite::draw(SDL_Renderer *renderer) const{
-    
+
     SDL_Surface *surface3 = new SDL_Surface;
-    
+
   // Create Frustum corner points
     float fFarX1 = fWorldX + cosf(fWorldA - fFoVHalf) * fFar;
     float fFarY1 = fWorldY + sinf(fWorldA - fFoVHalf) * fFar;
@@ -113,7 +113,7 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
     SDL_LockSurface(surface1);
     SDL_LockSurface(surface2);
     SDL_LockSurface(surface3);
-    
+
     Uint32 *pixels1 = (Uint32*)surface1->pixels;
     Uint32 *pixels2 = (Uint32*)surface2->pixels;
 
@@ -189,7 +189,7 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
     SDL_UnlockSurface(surface2);
     SDL_UnlockSurface(surface1);
     SDL_UnlockSurface(surface3);
-    
+
     //SDL_Texture* texture = image->getTexture();//SDL_CreateTextureFromSurface( renderer,getSurface());
 
 }
