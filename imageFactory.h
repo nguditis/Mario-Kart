@@ -12,6 +12,7 @@ public:
   ~ImageFactory();
 
   Image* getImage(const std::string&);
+    Image* getImage(const std::string&, const std::string&);
   std::vector<Image*> getImages(const std::string&);
 
 private:

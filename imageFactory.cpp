@@ -65,6 +65,25 @@ Image* ImageFactory::getImage(const std::string& name) {
   }
 }
 
+Image* ImageFactory::getImage(const std::string& name, const std::string& root) {
+    std::map<std::string, Image*>::const_iterator it = images.find(name);
+    if ( it == images.end() ) {
+        SDL_Surface * const surface =
+        IoMod::getInstance().readSurface( gdata.getXmlStr(name));
+        bool transparency = gdata.getXmlBool(root+"/transparency");
+        if ( transparency ) {
+            int keyColor = SDL_MapRGBA(surface->format, 255, 255, 255, 255);
+            SDL_SetColorKey(surface, SDL_TRUE, keyColor);
+        }
+        surfaces[name] = surface;
+        Image * const image =new Image(surface);
+        images[name] = image;
+        return image;
+    }
+    else {
+        return it->second;
+    }
+}
 
 std::vector<Image*> ImageFactory::getImages(const std::string& name) {
   // First search map to see if we've already made it:
