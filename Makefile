@@ -21,6 +21,8 @@ OBJS = \
 	AngularSprite.o \
 	twowaysprite.o \
 	vector2f.o \
+	collisionStrategy.o \
+	player.o \
 	clock.o \
 	engine.o \
 	main.o
