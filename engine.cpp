@@ -11,8 +11,10 @@
 #include "engine.h"
 #include "frameGenerator.h"
 #include "AngularSprite.h"
+#include "player.h"
+
 Engine::~Engine() {
-  for(auto track: bikers)
+  for(auto track: ground)
 	delete track;
   std::cout << "Terminating program" << std::endl;
 }
@@ -22,18 +24,20 @@ Engine::Engine() :
   clock( Clock::getInstance() ),
   renderer( rc.getRenderer() ),
   viewport( Viewport::getInstance() ),
-  bikers({new AngularSprite("road")}),
+  ground({new AngularSprite("road"), new Player("Mario")}),
   //pixels(std::vector< unsigned char > ( Viewport::getInstance().getWidth() * Viewport::getInstance().getHeight() * 4, 0 )),
   makeVideo( false)
 {
-  Viewport::getInstance().setObjectToTrack(bikers[0]);
+  Viewport::getInstance().setObjectToTrack(ground[0]);
   std::cout << "Loading complete" << std::endl;
 }
 
 void Engine::draw() const {
-  //for(auto track: bikers)
-  bikers[0]->draw(renderer);
-  //bikers[1]->draw();
+  //for(auto track: ground)
+  ground[0]->draw(renderer);
+  ground[1]->setScale(6);
+
+  ground[1]->draw();
 
   int fps = 0;
   std::stringstream ss;
@@ -46,11 +50,15 @@ void Engine::draw() const {
   SDL_Color color = {255,0,0,255};
   IoMod::getInstance().writeText(ss.str(), 10, 50);
   IoMod::getInstance().writeText(name, 10, 450, color); //overloaded function
+
   viewport.draw();
   SDL_RenderPresent(renderer);
 }
 
 void Engine::update(Uint32 ticks) {
+  std::cerr << "called engine update" << std::endl;
+
+  ground[1]-> update(ticks);
     viewport.update(); // always update viewport last
 }
 
@@ -93,54 +101,54 @@ void Engine::play() {
 
       if (keystate[SDL_SCANCODE_W]) {
         //static_cast<Player*>(player)->left();
-        static_cast<AngularSprite*>(bikers[0])->update(10,4);
+        static_cast<AngularSprite*>(ground[0])->update(10,4);
       }
       if (keystate[SDL_SCANCODE_D]) {
         //static_cast<Player*>(player)->right();
-        static_cast<AngularSprite*>(bikers[0])->update(10,2);
+        static_cast<AngularSprite*>(ground[0])->update(10,2);
       }
       if (keystate[SDL_SCANCODE_S]) {
         //static_cast<Player*>(player)->up();
-        static_cast<AngularSprite*>(bikers[0])->update(10,3);
+        static_cast<AngularSprite*>(ground[0])->update(10,3);
       }
       if (keystate[SDL_SCANCODE_A]) {
         //static_cast<Player*>(player)->down();
-       static_cast<AngularSprite*>(bikers[0])->update(10,1);
+       static_cast<AngularSprite*>(ground[0])->update(10,1);
       }
       if (keystate[SDL_SCANCODE_Y]) {
         //static_cast<Player*>(player)->down();
-        static_cast<AngularSprite*>(bikers[0])->update(10,5);
+        static_cast<AngularSprite*>(ground[0])->update(10,5);
 
       }
       if (keystate[SDL_SCANCODE_H]) {
         //static_cast<Player*>(player)->down();
-        static_cast<AngularSprite*>(bikers[0])->update(10,6);
+        static_cast<AngularSprite*>(ground[0])->update(10,6);
 
       }
         if (keystate[SDL_SCANCODE_U]) {
             //static_cast<Player*>(player)->down();
-            static_cast<AngularSprite*>(bikers[0])->update(10,7);
-            
+            static_cast<AngularSprite*>(ground[0])->update(10,7);
+
         }
         if (keystate[SDL_SCANCODE_J]) {
             //static_cast<Player*>(player)->down();
-            static_cast<AngularSprite*>(bikers[0])->update(10,8);
-            
+            static_cast<AngularSprite*>(ground[0])->update(10,8);
+
         }
         if (keystate[SDL_SCANCODE_I]) {
             //static_cast<Player*>(player)->down();
-            static_cast<AngularSprite*>(bikers[0])->update(10,9);
-            
+            static_cast<AngularSprite*>(ground[0])->update(10,9);
+
         }
         if (keystate[SDL_SCANCODE_K]) {
             //static_cast<Player*>(player)->down();
-            static_cast<AngularSprite*>(bikers[0])->update(10,10);
-            
+            static_cast<AngularSprite*>(ground[0])->update(10,10);
+
         }
 
 
       draw();
-      //update(ticks);
+      ground[1]->update(ticks);
       if ( makeVideo ) {
         frameGen.makeFrame();
       }

@@ -18,7 +18,7 @@ private:
   Clock& clock;
   SDL_Renderer * const renderer;
   Viewport& viewport;
-  std::vector<Drawable*> bikers;
+  std::vector<Drawable*> ground;
   bool makeVideo;
 
   void draw() const;

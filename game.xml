@@ -1,0 +1,169 @@
+<?xml version = "1.0"?>
+<GameData>
+<!-- screenTitle is also used to identify you and your animation.
+     So make sure to include your name as part of the screenTitle -->
+<title>Nathan's Racers</title>
+<maxStringSize>50</maxStringSize>
+
+<frameCapOn>false</frameCapOn>
+<period>17</period>
+
+<maxFrames>30</maxFrames>
+<username>Nathan Guditis</username>
+
+<view>
+  <width>1000</width>
+  <height>800</height>
+  <loc x="0" y="0"/>
+</view>
+
+<background>
+  <width>1000</width>
+  <height>800</height>
+</background>
+
+
+<font name="font">
+  <file>fonts/arial.ttf</file>
+  <size>24</size>
+  <red>255</red>
+  <green>255</green>
+  <blue>0</blue>
+  <alpha>0</alpha>
+</font>
+
+<road>
+  <!--<file>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_full.png</file>-->
+  <tracks>
+      <Donut_Plains_1>
+          <full>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_full.png</full>
+          <track>assets/tracks/Donut_Plains_1/Donut_Plains_1_track.png</track>
+          <water>assets/tracks/Donut_Plains_1/Donut_Plains_1_water.png</water>
+          <boundry>assets/tracks/Donut_Plains_1/Donut_Plains_1_boundry.png</boundry>
+          <grass>assets/tracks/Donut_Plains_1/Donut_Plains_1_grass.png</grass>
+      </Donut_Plains_1>
+      <Donut_Plains_2>
+          <full>assets/tracks/Donut_Plains_2/Donut_Plains_1_track_full.png</full>
+          <track>assets/tracks/Donut_Plains_2/Donut_Plains_1_track.png</track>
+          <water>assets/tracks/Donut_Plains_2/Donut_Plains_1_water.png</water>
+          <boundry>assets/tracks/Donut_Plains_2/Donut_Plains_1_boundry.png</boundry>
+          <grass>assets/tracks/Donut_Plains_2/Donut_Plains_1_grass.png</grass>
+      </Donut_Plains_2>
+
+
+  </tracks>
+
+  <startLoc x="500" y="500"/>
+  <speedX>200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</road>
+
+<sky>
+  <file>assets/sky.png</file>
+  <startLoc x="0" y="0"/>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</sky>
+
+
+<Mario>
+  <file>assets/players/marioRight.png</file>
+  <startLoc x="400" y="570"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Mario>
+
+<Mario_Right>
+  <file>assets/players/marioRight.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Mario_Right>
+
+<Mario_Left>
+  <file>assets/players/marioLeft.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Mario_Left>
+
+<Luigi>
+  <file>assets/stars.png</file>
+  <startLoc x="50" y="140"/>
+  <frames>4</frames>
+  <frameInterval>50</frameInterval>
+  <speedX>200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</Luigi>
+<Peach>
+  <file>assets/stars.png</file>
+  <startLoc x="50" y="140"/>
+  <frames>4</frames>
+  <frameInterval>50</frameInterval>
+  <speedX>200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</Peach>
+<Bowser>
+  <file>assets/stars.png</file>
+  <startLoc x="50" y="140"/>
+  <frames>4</frames>
+  <frameInterval>50</frameInterval>
+  <speedX>200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</Bowser>
+<Koopa>
+  <file>assets/stars.png</file>
+  <startLoc x="50" y="140"/>
+  <frames>4</frames>
+  <frameInterval>50</frameInterval>
+  <speedX>200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</Koopa>
+<DKjr>
+  <file>assets/stars.png</file>
+  <startLoc x="50" y="140"/>
+  <frames>4</frames>
+  <frameInterval>50</frameInterval>
+  <speedX>200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</DKjr>
+<Toad>
+  <file>assets/stars.png</file>
+  <startLoc x="50" y="140"/>
+  <frames>4</frames>
+  <frameInterval>50</frameInterval>
+  <speedX>200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</Toad>
+<Yoshi>
+  <file>assets/stars.png</file>
+  <startLoc x="50" y="140"/>
+  <frames>4</frames>
+  <frameInterval>50</frameInterval>
+  <speedX>200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</Yoshi>
+
+
+
+
+
+</GameData>

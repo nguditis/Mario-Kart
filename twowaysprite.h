@@ -14,16 +14,16 @@ public:
   virtual void draw() const;
   virtual void update(Uint32 ticks);
 
-  virtual const Image* getImage() const { 
-    return current_images[currentFrame]; 
+  virtual const Image* getImage() const {
+    return current_images[currentFrame];
   }
-  int getScaledWidth()  const { 
-    return getScale()*current_images[currentFrame]->getWidth(); 
-  } 
-  int getScaledHeight()  const { 
-    return getScale()*current_images[currentFrame]->getHeight(); 
-  } 
-  virtual const SDL_Surface* getSurface() const { 
+  int getScaledWidth()  const {
+    return getScale()*current_images[currentFrame]->getWidth();
+  }
+  int getScaledHeight()  const {
+    return getScale()*current_images[currentFrame]->getHeight();
+  }
+  virtual const SDL_Surface* getSurface() const {
     return current_images[currentFrame]->getSurface();
   }
 
