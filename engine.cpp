@@ -100,11 +100,11 @@ void Engine::play() {
       clock.incrFrame();
 
       if (keystate[SDL_SCANCODE_W]) {
-        //static_cast<Player*>(player)->left();
+        static_cast<Player*>(ground[1])->left(ticks);
         static_cast<AngularSprite*>(ground[0])->update(10,4);
       }
       if (keystate[SDL_SCANCODE_D]) {
-        //static_cast<Player*>(player)->right();
+        static_cast<Player*>(ground[1])->right(ticks);
         static_cast<AngularSprite*>(ground[0])->update(10,2);
       }
       if (keystate[SDL_SCANCODE_S]) {

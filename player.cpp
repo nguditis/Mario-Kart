@@ -10,6 +10,15 @@ void Player::advanceFrame(Uint32 ticks) {
 	}
 }
 
+void Player::reverseAdvanceFrame(Uint32 ticks) {
+    timeSinceLastFrame += ticks;
+    if (timeSinceLastFrame > frameInterval) {
+        currentFrame = (currentFrame-1) % numberOfFrames;
+        timeSinceLastFrame = 0;
+    }
+}
+
+
 Player::Player( const std::string& name) :
   Drawable(name, 
            Vector2f(Gamedata::getInstance().getXmlInt(name+"/startLoc/x"), 
@@ -17,20 +26,22 @@ Player::Player( const std::string& name) :
            Vector2f(Gamedata::getInstance().getXmlInt(name+"/speedX"),
                     Gamedata::getInstance().getXmlInt(name+"/speedY"))
            ),
-  images( ImageFactory::getInstance().getImages(name) ),
-
+  images_left( ImageFactory::getInstance().getImages(name+"_Left") ),
+  images_right( ImageFactory::getInstance().getImages(name+"_Right") ),
+  current_images(images_right),
   currentFrame(0),
   numberOfFrames( Gamedata::getInstance().getXmlInt(name+"/frames") ),
   frameInterval( Gamedata::getInstance().getXmlInt(name+"/frameInterval")),
   timeSinceLastFrame( 0 ),
-  worldWidth(Gamedata::getInstance().getXmlInt("world/width")),
-  worldHeight(Gamedata::getInstance().getXmlInt("world/height")),
+  worldWidth(Gamedata::getInstance().getXmlInt("background/width")),
+  worldHeight(Gamedata::getInstance().getXmlInt("background/height")),
   initialVelocity(getVelocity())
 { }
 
 Player::Player(const Player& s) :
   Drawable(s), 
-  images(s.images),
+  images_left(s.images_left),
+  images_right(s.images_right),
   currentFrame(s.currentFrame),
   numberOfFrames( s.numberOfFrames ),
   frameInterval( s.frameInterval ),
@@ -42,7 +53,8 @@ Player::Player(const Player& s) :
 
 Player& Player::operator=(const Player& s) {
   Drawable::operator=(s);
-  images = (s.images);
+  images_left = (s.images_left),
+  images_right = (s.images_right),
   currentFrame = (s.currentFrame);
   numberOfFrames = ( s.numberOfFrames );
   frameInterval = ( s.frameInterval );
@@ -54,7 +66,7 @@ Player& Player::operator=(const Player& s) {
 }
 
 void Player::draw() const { 
-  images[currentFrame]->draw(getX(), getY(), getScale());
+  current_images[currentFrame]->draw(getX(), getY(), getScale());
 }
 
 void Player::stop() { 
@@ -63,15 +75,35 @@ void Player::stop() {
   setVelocityY(0);
 }
 
-void Player::right() { 
-  if ( getX() < worldWidth-getScaledWidth()) {
-    setVelocityX(initialVelocity[0]);
-  }
+void Player::right(Uint32 ticks) {
+    if (current_images == images_left){
+        while (getCurrentFrameNum() <= numberOfFrames) {
+            advanceFrame(ticks);
+        }
+        current_images = images_right;
+    }
+    while (getCurrentFrameNum() <= numberOfFrames) {
+        advanceFrame(ticks);
+    }
+    
+    
+  //if ( getX() < worldWidth-getScaledWidth()) {
+  //  setVelocityX(initialVelocity[0]);
+  //}
 } 
-void Player::left()  { 
-  if ( getX() > 0) {
+void Player::left(Uint32 ticks)  {
+    if (current_images == images_right){
+        while (getCurrentFrameNum() >= 0) {
+            reverseAdvanceFrame(ticks);
+        }
+        current_images = images_left;
+    }
+    while (getCurrentFrameNum() >= 0) {
+        reverseAdvanceFrame(ticks);
+    }
+  /*if ( getX() > 0) {
     setVelocityX(-initialVelocity[0]);
-  }
+  }*/
 } 
 void Player::up()    { 
   if ( getY() > 0) {
@@ -85,7 +117,6 @@ void Player::down()  {
 }
 
 void Player::update(Uint32 ticks) { 
-  advanceFrame(ticks);
 
   Vector2f incr = getVelocity() * static_cast<float>(ticks) * 0.001;
   setPosition(getPosition() + incr);

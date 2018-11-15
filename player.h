@@ -14,26 +14,32 @@ public:
   virtual void update(Uint32 ticks);
 
   virtual const Image* getImage() const { 
-    return images[currentFrame]; 
+    return current_images[currentFrame];
   }
-  int getScaledWidth()  const { 
-    return getScale()*images[currentFrame]->getWidth(); 
-  } 
-  int getScaledHeight()  const { 
-    return getScale()*images[currentFrame]->getHeight(); 
-  } 
-  virtual const SDL_Surface* getSurface() const { 
-    return images[currentFrame]->getSurface();
+  int getCurrentFrameNum() {
+      return currentFrame;
   }
 
-  void right();
-  void left();
+  int getScaledWidth()  const { 
+    return getScale()*current_images[currentFrame]->getWidth();
+  } 
+  int getScaledHeight()  const { 
+    return getScale()*current_images[currentFrame]->getHeight();
+  } 
+  virtual const SDL_Surface* getSurface() const { 
+    return current_images[currentFrame]->getSurface();
+  }
+
+  void right(Uint32 ticks);
+  void left(Uint32 ticks);
   void up();
   void down();
   void stop();
 
 private:
-  std::vector<Image *> images;
+  std::vector<Image *> images_left;
+  std::vector<Image *> images_right;
+  std::vector<Image *> current_images;
 
   unsigned currentFrame;
   unsigned numberOfFrames;
@@ -43,8 +49,9 @@ private:
   int worldHeight;
 
   Vector2f initialVelocity;
-
+    
   void advanceFrame(Uint32 ticks);
+  void reverseAdvanceFrame(Uint32 ticks);
   Player& operator=(const Player&);
 };
 #endif
