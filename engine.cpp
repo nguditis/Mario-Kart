@@ -98,19 +98,27 @@ void Engine::play() {
     ticks = clock.getElapsedTicks();
     if ( ticks > 0 ) {
       clock.incrFrame();
-
       if (keystate[SDL_SCANCODE_W]) {
         static_cast<Player*>(ground[1])->up();
         static_cast<AngularSprite*>(ground[0])->update(10,4);
       }
-      if (keystate[SDL_SCANCODE_D]) {
-        static_cast<Player*>(ground[1])->right(ticks);
-        static_cast<AngularSprite*>(ground[0])->update(10,2);
-      }
-
-
       if (keystate[SDL_SCANCODE_S]) {
         static_cast<AngularSprite*>(ground[0])->update(10,3);
+      }
+        
+        ////// "snap back" to forward sprite
+      if (!keystate[SDL_SCANCODE_D]) {
+        static_cast<Player*>(ground[1])->up();
+      }
+      if (!keystate[SDL_SCANCODE_A]) {
+        static_cast<Player*>(ground[1])->up();
+      }
+        /////
+        
+        
+      if (keystate[SDL_SCANCODE_D]) {
+            static_cast<Player*>(ground[1])->right(ticks);
+            static_cast<AngularSprite*>(ground[0])->update(10,2);
       }
       if (keystate[SDL_SCANCODE_A]) {
         static_cast<Player*>(ground[1])->left(ticks);
@@ -147,6 +155,7 @@ void Engine::play() {
             static_cast<AngularSprite*>(ground[0])->update(10,10);
 
         }
+        
 
 
       draw();
