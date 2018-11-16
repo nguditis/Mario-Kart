@@ -37,11 +37,11 @@ protected:
   SDL_Surface *surface2;
   int worldWidth;
   int worldHeight;
-  float fWorldX = 1000.0f;
-  float fWorldY = 1000.0f;
-  float fWorldA = 0.1f;
+  float fWorldX = 132.045f;
+  float fWorldY = 547.693f;
+  float fWorldA = 20.5f;
   float fNear = 0.95f;
-  float fFar = 0.013f;
+  float fFar = -20.987f;
   float fFoVHalf = 3.14159f / 4.0f;
   AngularSprite& operator=(const AngularSprite&);
 };

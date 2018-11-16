@@ -220,7 +220,6 @@ bool AngularSprite::CheckNewValue(int x, int y)
 void AngularSprite::draw(SDL_Renderer *renderer) const{
 
     SDL_Surface *surface3 = new SDL_Surface;
-
   // Create Frustum corner points
     float fFarX1 = fWorldX + cosf(fWorldA - fFoVHalf) * fFar;
     float fFarY1 = fWorldY + sinf(fWorldA - fFoVHalf) * fFar;
@@ -234,8 +233,7 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
     float fNearX2 = fWorldX + cosf(fWorldA + fFoVHalf) * fNear;
     float fNearY2 = fWorldY + sinf(fWorldA + fFoVHalf) * fNear;
     // Starting with furthest away line and work towards the camera point
-    //std::cout<<"drawing "<<fFarX1<<" "<<fFarY1<<" "<<fNearX1<<" "<<fNearY1<<" "<<fFarX2<<" " << fFarY2<<std::endl;
-
+    
     SDL_LockSurface(surface1);
     SDL_LockSurface(surface2);
     SDL_LockSurface(surface3);

@@ -168,11 +168,8 @@ void Engine::play() {
             //static_cast<Player*>(player)->down();
             static_cast<AngularSprite*>(ground[0])->update(10,10);
 
-        }
-        
-
-
-      draw();
+        }      
+       draw();
       update(ticks);
       if ( makeVideo ) {
         frameGen.makeFrame();
