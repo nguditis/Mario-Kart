@@ -41,25 +41,34 @@ bool AngularSprite::checkVelocity(Uint32 ticks, int direction, float p_x, float 
     {
       //fNear -= 0.1f * ticks;
       fWorldA -= 0.2f;
-      /*fSampleX = 
-      fSampleY = 
-      velocity  = pixel[fSampleX,fSampleY];
-      if(velocity = 0)
-        cur_velocity = velocity;
-        */
-
-
-
+      bool valid = CheckNewValue(p_x, p_y);
+      if(!valid)
+      {
+        fWorldA += 0.2f;
+      }
+      return valid;
     }
     else if (direction == 2)
     {
       fWorldA += 0.2f;
-      //fNear += 0.1f * ticks;
+      bool valid = CheckNewValue(p_x, p_y);
+      if(!valid)
+      {
+        fWorldA -= 0.2f;
+      }
+      return valid;
     }
     else if(direction ==3)
     {
       fWorldX += cosf(fWorldA) * 0.2f * ticks;
       fWorldY += sinf(fWorldA) * 0.2f * ticks;
+      bool valid = CheckNewValue(p_x, p_y);
+      if(!valid)
+      {
+        fWorldX -= cosf(fWorldA) * 0.2f * ticks;
+        fWorldY -= sinf(fWorldA) * 0.2f * ticks;
+      }
+      return valid;
       
     }
     else if (direction == 4)
@@ -191,8 +200,6 @@ bool AngularSprite::CheckNewValue(int x, int y)
     float fEndY = (fFarY2 - fNearY2) / (fSampleDepth) + fNearY2;
     float fSampleX = (fEndX - fStartX) * fSampleWidth + fStartX;
     float fSampleY = (fEndY - fStartY) * fSampleWidth + fStartY;
-    fSampleX = fabs(fmod(fSampleX, 1022)+1);
-    fSampleY = fabs(fmod(fSampleY,1022)+1);
     SDL_Surface *surface = IMG_Load(Gamedata::getInstance().getXmlStr("road/tracks/Donut_Plains_1/boundry").c_str());
     SDL_LockSurface(surface);
     Uint32 *pixels = (Uint32*)surface->pixels;
@@ -201,7 +208,7 @@ bool AngularSprite::CheckNewValue(int x, int y)
   //SDL_LockSurface(surface2);
     SDL_GetRGBA(pixel, surface->format, &color.r, &color.g, &color.b, &color.a);
     //SDL_GetRGBA(pixel2, surface2->format, &color2.r, &color2.g, &color2.b, &color2.a);
-    if(int(color.a) == 255)
+    if(int(color.a) == 255 || fSampleY < 0 || fSampleX < 0 || fSampleX > 1024 || fSampleY>1024)
     {
       return false;
     }
@@ -269,6 +276,22 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
         SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
         //std::cout<<"draw color set "<<std::endl;
 
+        if(fSampleX < 0 || fSampleX > 1024 || fSampleY<0 || fSampleY > 1024)
+        {
+              SDL_Color w_color = {0,0,0,255};
+              SDL_SetRenderDrawColor(renderer, w_color.r, w_color.g, w_color.b, w_color.a);
+              SDL_RenderDrawPoint(renderer, x, y+worldHeight/2);
+       
+        }
+        else
+        {
+
+              Uint32 pixel2 = pixels2[(int(fSampleY) * surface2->pitch / 4) + int(fSampleX)];
+              SDL_GetRGBA(pixel2, surface2->format, &color.r, &color.g, &color.b, &color.a);
+              SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+              SDL_RenderDrawPoint(renderer, x, y+worldHeight/2);
+
+        }
         fSampleX = fabs(fmod(fSampleX, 1022)+1);
         fSampleY = fabs(fmod(fSampleY,1022)+1);
         /*if (fSampleX > 1024) {
@@ -289,7 +312,7 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
           }*/
         //std::cout<<fSampleX<<" "<<fSampleY<<std::endl;
         Uint32 pixel1 = pixels1[(int(fSampleY) * surface1->pitch / 4) + int(fSampleX)];
-        Uint32 pixel2 = pixels2[(int(fSampleY) * surface2->pitch / 4) + int(fSampleX)];
+        
         // Sample symbol and colour from map sprite, and draw the
         // pixel to the screen
         //SDL_Color color = getPixelColor(fSampleX,fSampleY);
@@ -299,11 +322,7 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
         //std::cout<<"draw color set "<<std::endl;
         SDL_RenderDrawPoint(renderer, x, y);
 
-        SDL_GetRGBA(pixel2, surface2->format, &color.r, &color.g, &color.b, &color.a);
-        SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-        //std::cout<<"draw color set "<<std::endl;
-        SDL_RenderDrawPoint(renderer, x, y+worldHeight/2);
 
       }
     }

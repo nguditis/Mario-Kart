@@ -98,14 +98,19 @@ void Engine::play() {
     ticks = clock.getElapsedTicks();
     if ( ticks > 0 ) {
       clock.incrFrame();
+      int p_x = static_cast<Player*>(ground[1])->getX();
+      int p_y = static_cast<Player*>(ground[1])->getY();
       if (keystate[SDL_SCANCODE_W]) {
-        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 4, 500, 500))
+        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 4, p_x, p_y))
         {
           static_cast<AngularSprite*>(ground[0])->update(10,4);
         }
       }
       if (keystate[SDL_SCANCODE_S]) {
-        static_cast<AngularSprite*>(ground[0])->update(10,3);
+        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 3, p_x, p_y))
+        {
+          static_cast<AngularSprite*>(ground[0])->update(10,3);
+        }
       }
         
         ////// "snap back" to forward sprite
@@ -119,13 +124,20 @@ void Engine::play() {
         
         
       if (keystate[SDL_SCANCODE_D]) {
+        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 2, p_x, p_y))
+        {
             static_cast<Player*>(ground[1])->right(ticks);
             static_cast<AngularSprite*>(ground[0])->update(10,2);
+        }
       }
       if (keystate[SDL_SCANCODE_A]) {
-        static_cast<Player*>(ground[1])->left(ticks);
+        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 1, p_x, p_y))
+        {
+          static_cast<Player*>(ground[1])->left(ticks);
         //static_cast<Player*>(player)->down();
-       static_cast<AngularSprite*>(ground[0])->update(10,1);
+         static_cast<AngularSprite*>(ground[0])->update(10,1);
+        }
+        
       }
       if (keystate[SDL_SCANCODE_Y]) {
         //static_cast<Player*>(player)->down();
