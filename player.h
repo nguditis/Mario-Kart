@@ -23,9 +23,6 @@ public:
       return currentFrame;
   }
     
-    Drawable* getBounds() {
-        return bounds;
-    }
 
   int getScaledWidth()  const {
     return getScale()*current_images[currentFrame]->getWidth();

@@ -4,6 +4,7 @@
 #include "drawable.h"
 #include <SDL.h>
 #include "SDL_image.h"
+#include <map>
 class AngularSprite : public Drawable {
 public:
   AngularSprite(const std::string&);
@@ -27,12 +28,13 @@ public:
   virtual const SDL_Surface* getSurface() const {
     return image->getSurface();
   }
-
+  virtual bool checkVelocity(Uint32 ticks, int direction, float p_x, float p_y);
+  bool CheckNewValue(int x, int y);
+  
 protected:
   const Image * image;
   SDL_Surface *surface1;
   SDL_Surface *surface2;
-  // = IMG_Load("assets/frame1.png");
   int worldWidth;
   int worldHeight;
   float fWorldX = 1000.0f;

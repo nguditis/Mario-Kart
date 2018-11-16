@@ -57,13 +57,9 @@ void Engine::draw() const {
 
 void Engine::update(Uint32 ticks) {
   //std::cerr << "called engine update" << std::endl;
-    
-    if (strat->execute()) {
-        <#statements#>
-    }
 
-  ground[1]-> update(ticks);
-    viewport.update(); // always update viewport last
+  //ground[1]-> update(ticks);
+   // viewport.update(); // always update viewport last
 }
 
 void Engine::play() {
@@ -103,8 +99,10 @@ void Engine::play() {
     if ( ticks > 0 ) {
       clock.incrFrame();
       if (keystate[SDL_SCANCODE_W]) {
-        static_cast<Player*>(ground[1])->up();
-        static_cast<AngularSprite*>(ground[0])->update(10,4);
+        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 4, 500, 500))
+        {
+          static_cast<AngularSprite*>(ground[0])->update(10,4);
+        }
       }
       if (keystate[SDL_SCANCODE_S]) {
         static_cast<AngularSprite*>(ground[0])->update(10,3);

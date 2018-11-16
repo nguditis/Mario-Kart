@@ -16,7 +16,9 @@ AngularSprite::AngularSprite( const std::string& name) :
  // pixels ((Uint32*)surface->pixels),
   worldWidth(Gamedata::getInstance().getXmlInt("background/width")),
   worldHeight(Gamedata::getInstance().getXmlInt("background/height"))
-{ }
+{
+
+ }
 
 AngularSprite::AngularSprite(const AngularSprite& s) :
   Drawable(s),
@@ -31,6 +33,82 @@ AngularSprite& AngularSprite::operator=(const AngularSprite& s) {
   worldWidth = ( s.worldWidth );
   worldHeight = ( s.worldHeight );
   return *this;
+}
+bool AngularSprite::checkVelocity(Uint32 ticks, int direction, float p_x, float p_y)
+{
+
+    if(direction == 1)
+    {
+      //fNear -= 0.1f * ticks;
+      fWorldA -= 0.2f;
+      /*fSampleX = 
+      fSampleY = 
+      velocity  = pixel[fSampleX,fSampleY];
+      if(velocity = 0)
+        cur_velocity = velocity;
+        */
+
+
+
+    }
+    else if (direction == 2)
+    {
+      fWorldA += 0.2f;
+      //fNear += 0.1f * ticks;
+    }
+    else if(direction ==3)
+    {
+      fWorldX += cosf(fWorldA) * 0.2f * ticks;
+      fWorldY += sinf(fWorldA) * 0.2f * ticks;
+      
+    }
+    else if (direction == 4)
+    {
+
+      fWorldX -= cosf(fWorldA) * 0.2f * ticks;
+      fWorldY -= sinf(fWorldA) * 0.2f * ticks;
+      bool valid = CheckNewValue(p_x, p_y);
+      if(!valid)
+      {
+        fWorldX += cosf(fWorldA) * 0.2f * ticks;
+        fWorldY += sinf(fWorldA) * 0.2f * ticks;
+      }
+      return valid;
+    }
+    else if (direction == 5)
+    {
+      //fFoVHalf -= 0.2f * ticks;
+      fNear -= 0.1f * ticks;
+    }
+    else if (direction == 6)
+    {
+      //fFoVHalf += 0.2f * ticks;
+      fNear += 0.1f * ticks;
+
+    }
+    else if (direction == 7)
+    {
+        //fFoVHalf -= 0.2f * ticks;
+        fFar -= 0.1f * ticks;
+    }
+    else if (direction == 8)
+    {
+        //fFoVHalf += 0.2f * ticks;
+        fFar += 0.1f * ticks;
+
+    }
+    else if (direction == 9)
+    {
+        //fFoVHalf -= 0.2f * ticks;
+        fFoVHalf -= 0.1f;
+    }
+    else if (direction == 10)
+    {
+        //fFoVHalf += 0.2f * ticks;
+        fFoVHalf += 0.1f;
+
+    }
+    return true;
 }
 
 void AngularSprite::update(Uint32 ticks){}
@@ -91,6 +169,47 @@ void AngularSprite::update(Uint32 ticks, int direction)
     }
 
   }
+bool AngularSprite::CheckNewValue(int x, int y)
+{
+    float fFarX1 = fWorldX + cosf(fWorldA - fFoVHalf) * fFar;
+    float fFarY1 = fWorldY + sinf(fWorldA - fFoVHalf) * fFar;
+
+    float fNearX1 = fWorldX + cosf(fWorldA - fFoVHalf) * fNear;
+    float fNearY1 = fWorldY + sinf(fWorldA - fFoVHalf) * fNear;
+
+    float fFarX2 = fWorldX + cosf(fWorldA + fFoVHalf) * fFar;
+    float fFarY2 = fWorldY + sinf(fWorldA + fFoVHalf) * fFar;
+
+    float fNearX2 = fWorldX + cosf(fWorldA + fFoVHalf) * fNear;
+    float fNearY2 = fWorldY + sinf(fWorldA + fFoVHalf) * fNear;
+
+    float fSampleDepth = (float)y / ((float)worldHeight / 2.0f);
+    float fSampleWidth = (float)x / (float)worldWidth;
+    float fStartX = (fFarX1 - fNearX1) / (fSampleDepth) + fNearX1;
+    float fStartY = (fFarY1 - fNearY1) / (fSampleDepth) + fNearY1;
+    float fEndX = (fFarX2 - fNearX2) / (fSampleDepth) + fNearX2;
+    float fEndY = (fFarY2 - fNearY2) / (fSampleDepth) + fNearY2;
+    float fSampleX = (fEndX - fStartX) * fSampleWidth + fStartX;
+    float fSampleY = (fEndY - fStartY) * fSampleWidth + fStartY;
+    fSampleX = fabs(fmod(fSampleX, 1022)+1);
+    fSampleY = fabs(fmod(fSampleY,1022)+1);
+    SDL_Surface *surface = IMG_Load(Gamedata::getInstance().getXmlStr("road/tracks/Donut_Plains_1/boundry").c_str());
+    SDL_LockSurface(surface);
+    Uint32 *pixels = (Uint32*)surface->pixels;
+    Uint32 pixel = pixels[(int(fSampleY) * surface->pitch / 4) + int(fSampleX)];
+    SDL_Color color;
+  //SDL_LockSurface(surface2);
+    SDL_GetRGBA(pixel, surface->format, &color.r, &color.g, &color.b, &color.a);
+    //SDL_GetRGBA(pixel2, surface2->format, &color2.r, &color2.g, &color2.b, &color2.a);
+    if(int(color.a) == 255)
+    {
+      return false;
+    }
+    
+    SDL_UnlockSurface(surface);
+    
+    return true;
+}
 void AngularSprite::draw(SDL_Renderer *renderer) const{
 
     SDL_Surface *surface3 = new SDL_Surface;
@@ -119,13 +238,14 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
 
     // [250*500];
     //memcpy( cur_pixels, pixels, surface->pitch * surface->h );
-    for (int y = 1; y < worldHeight/2; y++)
+    for (int y = 0; y < worldHeight/2; y++)
     {
       //std::cout<<"drawing y "<<y<<std::endl;
       // Take a sample point for depth linearly related to rows down screen
       float fSampleDepth = (float)y / ((float)worldHeight / 2.0f);
       //std::cout<<fSampleDepth<<std::endl;
-
+      if(fSampleDepth == 0)
+         fSampleDepth = 1;
       // Use sample point in non-linear (1/x) way to enable perspective
       // and grab start and end points for lines across the screen
       float fStartX = (fFarX1 - fNearX1) / (fSampleDepth) + fNearX1;
@@ -149,8 +269,9 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
         SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
         //std::cout<<"draw color set "<<std::endl;
 
-
-        if (fSampleX > 1024) {
+        fSampleX = fabs(fmod(fSampleX, 1022)+1);
+        fSampleY = fabs(fmod(fSampleY,1022)+1);
+        /*if (fSampleX > 1024) {
           fSampleX = 1024;
           SDL_RenderDrawPoint(renderer, fSampleX, fSampleY);
         }
@@ -165,7 +286,7 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
           if (fSampleY < 0) {
               fSampleY = 0;
               SDL_RenderDrawPoint(renderer, fSampleX, fSampleY);
-          }
+          }*/
         //std::cout<<fSampleX<<" "<<fSampleY<<std::endl;
         Uint32 pixel1 = pixels1[(int(fSampleY) * surface1->pitch / 4) + int(fSampleX)];
         Uint32 pixel2 = pixels2[(int(fSampleY) * surface2->pitch / 4) + int(fSampleX)];
