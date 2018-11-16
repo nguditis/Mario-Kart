@@ -56,7 +56,11 @@ void Engine::draw() const {
 }
 
 void Engine::update(Uint32 ticks) {
-  std::cerr << "called engine update" << std::endl;
+  //std::cerr << "called engine update" << std::endl;
+    
+    if (strat->execute()) {
+        <#statements#>
+    }
 
   ground[1]-> update(ticks);
     viewport.update(); // always update viewport last
@@ -159,7 +163,7 @@ void Engine::play() {
 
 
       draw();
-      ground[1]->update(ticks);
+      update(ticks);
       if ( makeVideo ) {
         frameGen.makeFrame();
       }

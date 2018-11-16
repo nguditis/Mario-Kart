@@ -4,6 +4,8 @@
 #include <vector>
 #include <cmath>
 #include "drawable.h"
+#include "collisionStrategy.h"
+
 
 class Player : public Drawable {
 public:
@@ -20,6 +22,10 @@ public:
   int getCurrentFrameNum() {
       return currentFrame;
   }
+    
+    Drawable* getBounds() {
+        return bounds;
+    }
 
   int getScaledWidth()  const {
     return getScale()*current_images[currentFrame]->getWidth();
@@ -41,6 +47,9 @@ private:
   std::vector<Image *> images_left;
   std::vector<Image *> images_right;
   std::vector<Image *> current_images;
+    
+  SDL_Rect bounds;
+  
 
   unsigned currentFrame;
   unsigned numberOfFrames;
@@ -50,6 +59,8 @@ private:
   int worldHeight;
 
   Vector2f initialVelocity;
+
+    
 
   void advanceFrame(Uint32 ticks);
   void reverseAdvanceFrame(Uint32 ticks);
