@@ -42,14 +42,14 @@ void Engine::draw() const {
   int fps = 0;
   std::stringstream ss;
 
-  std::string name = "Nathan";
+  std::string name = "Varsha and Nathan";
   fps = clock.getFps();
   ss << "Current FPS: " << fps;
 
   //std::cout<<"drawing engine"<<std::endl;
   SDL_Color color = {255,0,0,255};
   IoMod::getInstance().writeText(ss.str(), 10, 50);
-  IoMod::getInstance().writeText(name, 10, 450, color); //overloaded function
+  IoMod::getInstance().writeText(name, 10, viewport.getHeight()-30, color); //overloaded function
 
   viewport.draw();
   SDL_RenderPresent(renderer);
