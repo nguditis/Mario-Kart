@@ -35,8 +35,10 @@ public:
   
 protected:
   const Image * image;
-  SDL_Surface *surface1;
-  SDL_Surface *surface2;
+  SDL_Surface *track;
+  SDL_Surface *sky;
+  SDL_Surface *grass;
+  SDL_Surface *blocks;
   int worldWidth;
   int worldHeight;
   float fWorldX;// = 132.045f;
