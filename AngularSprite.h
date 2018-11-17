@@ -13,7 +13,7 @@ public:
   virtual void draw() const {};
   virtual void draw(SDL_Renderer *renderer) const;
   virtual void update(Uint32 ticks) ;
-  virtual void update(Uint32 ticks, int direction) ;
+  virtual void update(Uint32 ticks, int direction, float scale = 0.2f) ;
   //virtual void update(Uint32 ticks, const SDL_Renderer *renderer) ;
 
   virtual const Image* getImage() const {
@@ -30,6 +30,8 @@ public:
   }
   virtual bool checkVelocity(Uint32 ticks, int direction, float p_x, float p_y);
   bool CheckNewValue(int x, int y);
+
+  float GrassVelocity(int x, int y);
   
 protected:
   const Image * image;

@@ -100,16 +100,18 @@ void Engine::play() {
       clock.incrFrame();
       int p_x = static_cast<Player*>(ground[1])->getX();
       int p_y = static_cast<Player*>(ground[1])->getY();
+      float velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y);
+      //std::cout<<velocity<<std::endl;
       if (keystate[SDL_SCANCODE_W]) {
         if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 4, p_x, p_y))
         {
-          static_cast<AngularSprite*>(ground[0])->update(10,4);
+          static_cast<AngularSprite*>(ground[0])->update(10,4,velocity);
         }
       }
       if (keystate[SDL_SCANCODE_S]) {
         if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 3, p_x, p_y))
         {
-          static_cast<AngularSprite*>(ground[0])->update(10,3);
+          static_cast<AngularSprite*>(ground[0])->update(10,3,velocity);
         }
       }
         
@@ -127,7 +129,7 @@ void Engine::play() {
         if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 2, p_x, p_y))
         {
             static_cast<Player*>(ground[1])->right(ticks);
-            static_cast<AngularSprite*>(ground[0])->update(10,2);
+            static_cast<AngularSprite*>(ground[0])->update(10,2,velocity);
         }
       }
       if (keystate[SDL_SCANCODE_A]) {
@@ -135,7 +137,7 @@ void Engine::play() {
         {
           static_cast<Player*>(ground[1])->left(ticks);
         //static_cast<Player*>(player)->down();
-         static_cast<AngularSprite*>(ground[0])->update(10,1);
+         static_cast<AngularSprite*>(ground[0])->update(10,1,velocity);
         }
         
       }

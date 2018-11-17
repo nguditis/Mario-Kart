@@ -41,34 +41,34 @@ bool AngularSprite::checkVelocity(Uint32 ticks, int direction, float p_x, float 
     {
       //fNear -= 0.1f * ticks;
       fWorldA -= 0.2f;
-      bool valid = CheckNewValue(p_x, p_y);
-      if(!valid)
+      bool blocked = CheckNewValue(p_x, p_y);
+      if(!blocked)
       {
         fWorldA += 0.2f;
       }
-      return valid;
+      return blocked;
     }
     else if (direction == 2)
     {
       fWorldA += 0.2f;
-      bool valid = CheckNewValue(p_x, p_y);
-      if(!valid)
+      bool blocked = CheckNewValue(p_x, p_y);
+      if(!blocked)
       {
         fWorldA -= 0.2f;
       }
-      return valid;
+      return blocked;
     }
     else if(direction ==3)
     {
       fWorldX += cosf(fWorldA) * 0.2f * ticks;
       fWorldY += sinf(fWorldA) * 0.2f * ticks;
-      bool valid = CheckNewValue(p_x, p_y);
-      if(!valid)
+      bool blocked = CheckNewValue(p_x, p_y);
+      if(!blocked)
       {
         fWorldX -= cosf(fWorldA) * 0.2f * ticks;
         fWorldY -= sinf(fWorldA) * 0.2f * ticks;
       }
-      return valid;
+      return blocked;
       
     }
     else if (direction == 4)
@@ -76,13 +76,13 @@ bool AngularSprite::checkVelocity(Uint32 ticks, int direction, float p_x, float 
 
       fWorldX -= cosf(fWorldA) * 0.2f * ticks;
       fWorldY -= sinf(fWorldA) * 0.2f * ticks;
-      bool valid = CheckNewValue(p_x, p_y);
-      if(!valid)
+      bool blocked = CheckNewValue(p_x, p_y);
+      if(!blocked)
       {
         fWorldX += cosf(fWorldA) * 0.2f * ticks;
         fWorldY += sinf(fWorldA) * 0.2f * ticks;
       }
-      return valid;
+      return blocked;
     }
     else if (direction == 5)
     {
@@ -121,27 +121,27 @@ bool AngularSprite::checkVelocity(Uint32 ticks, int direction, float p_x, float 
 }
 
 void AngularSprite::update(Uint32 ticks){}
-void AngularSprite::update(Uint32 ticks, int direction)
+void AngularSprite::update(Uint32 ticks, int direction, float factor)
 {
     if(direction == 1)
     {
       //fNear -= 0.1f * ticks;
-      fWorldA -= 0.2f;
+      fWorldA -= factor;
     }
     else if (direction == 2)
     {
-      fWorldA += 0.2f;
+      fWorldA += factor;
       //fNear += 0.1f * ticks;
     }
     else if(direction ==3)
     {
-      fWorldX += cosf(fWorldA) * 0.2f * ticks;
-      fWorldY += sinf(fWorldA) * 0.2f * ticks;
+      fWorldX += cosf(fWorldA) * factor* ticks;
+      fWorldY += sinf(fWorldA) * factor * ticks;
     }
     else if (direction == 4)
     {
-      fWorldX -= cosf(fWorldA) * 0.2f * ticks;
-      fWorldY -= sinf(fWorldA) * 0.2f * ticks;
+      fWorldX -= cosf(fWorldA) * factor * ticks;
+      fWorldY -= sinf(fWorldA) * factor * ticks;
     }
     else if (direction == 5)
     {
@@ -178,6 +178,43 @@ void AngularSprite::update(Uint32 ticks, int direction)
     }
 
   }
+float AngularSprite::GrassVelocity(int x, int y)
+{
+    float fFarX1 = fWorldX + cosf(fWorldA - fFoVHalf) * fFar;
+    float fFarY1 = fWorldY + sinf(fWorldA - fFoVHalf) * fFar;
+
+    float fNearX1 = fWorldX + cosf(fWorldA - fFoVHalf) * fNear;
+    float fNearY1 = fWorldY + sinf(fWorldA - fFoVHalf) * fNear;
+
+    float fFarX2 = fWorldX + cosf(fWorldA + fFoVHalf) * fFar;
+    float fFarY2 = fWorldY + sinf(fWorldA + fFoVHalf) * fFar;
+
+    float fNearX2 = fWorldX + cosf(fWorldA + fFoVHalf) * fNear;
+    float fNearY2 = fWorldY + sinf(fWorldA + fFoVHalf) * fNear;
+
+    float fSampleDepth = (float)y / ((float)worldHeight / 2.0f);
+    float fSampleWidth = (float)x / (float)worldWidth;
+    float fStartX = (fFarX1 - fNearX1) / (fSampleDepth) + fNearX1;
+    float fStartY = (fFarY1 - fNearY1) / (fSampleDepth) + fNearY1;
+    float fEndX = (fFarX2 - fNearX2) / (fSampleDepth) + fNearX2;
+    float fEndY = (fFarY2 - fNearY2) / (fSampleDepth) + fNearY2;
+    float fSampleX = (fEndX - fStartX) * fSampleWidth + fStartX;
+    float fSampleY = (fEndY - fStartY) * fSampleWidth + fStartY;
+    SDL_Surface *surface = IMG_Load(Gamedata::getInstance().getXmlStr("road/tracks/Donut_Plains_1/grass").c_str());
+    SDL_LockSurface(surface);
+    Uint32 *pixels = (Uint32*)surface->pixels;
+    Uint32 pixel = pixels[(int(fSampleY) * surface->pitch / 4) + int(fSampleX)];
+    SDL_Color color;
+  //SDL_LockSurface(surface2);
+    SDL_GetRGBA(pixel, surface->format, &color.r, &color.g, &color.b, &color.a);
+    SDL_UnlockSurface(surface);
+    //SDL_GetRGBA(pixel2, surface2->format, &color2.r, &color2.g, &color2.b, &color2.a);
+    if(int(color.a) == 255)
+    {
+      return 0.0f;
+    }   
+    return 0.2f;
+}
 bool AngularSprite::CheckNewValue(int x, int y)
 {
     float fFarX1 = fWorldX + cosf(fWorldA - fFoVHalf) * fFar;
