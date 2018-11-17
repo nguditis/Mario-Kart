@@ -2,20 +2,28 @@
 <GameData>
 <!-- screenTitle is also used to identify you and your animation.
      So make sure to include your name as part of the screenTitle -->
-<title>Nathan's Racers</title>
+<title>Mario Kart C++</title>
 <maxStringSize>50</maxStringSize>
 
 <frameCapOn>false</frameCapOn>
 <period>17</period>
 
 <maxFrames>30</maxFrames>
-<username>Nathan Guditis</username>
+<username>Varsha Chauhan and Nathan Guditis</username>
 
 <view>
   <width>1000</width>
   <height>800</height>
   <loc x="0" y="0"/>
 </view>
+
+<worldData>
+    <fworldx>132.045</fworldx>
+    <fworldy>547.693</fworldy>
+    <fworlda>20.5</fworlda>
+    <fnear>0.95</fnear>
+    <ffar>-20.987</ffar>
+</worldData>
 
 <background>
   <width>1000</width>

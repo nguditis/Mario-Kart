@@ -15,7 +15,12 @@ AngularSprite::AngularSprite( const std::string& name) :
   surface2( IMG_Load(Gamedata::getInstance().getXmlStr("road/tracks/Donut_Plains_1/full").c_str())),
  // pixels ((Uint32*)surface->pixels),
   worldWidth(Gamedata::getInstance().getXmlInt("background/width")),
-  worldHeight(Gamedata::getInstance().getXmlInt("background/height"))
+  worldHeight(Gamedata::getInstance().getXmlInt("background/height")),
+fWorldX(Gamedata::getInstance().getXmlFloat("worldData/fworldx")),
+fWorldY(Gamedata::getInstance().getXmlFloat("worldData/fworldy")),
+fWorldA(Gamedata::getInstance().getXmlFloat("worldData/fworlda")),
+fNear(Gamedata::getInstance().getXmlFloat("worldData/fnear")),
+fFar(Gamedata::getInstance().getXmlFloat("worldData/ffar"))
 {
 
  }
