@@ -29,7 +29,6 @@ Player::Player( const std::string& name) :
   images_left( ImageFactory::getInstance().getImages(name+"_Left") ),
   images_right( ImageFactory::getInstance().getImages(name+"_Right") ),
   current_images(images_right),
-  bounds({(int)getX()-2,(int)getY()-2, 5, 5}),
   currentFrame(0),
   numberOfFrames( Gamedata::getInstance().getXmlInt(name+"/frames") ),
   frameInterval( Gamedata::getInstance().getXmlInt(name+"/frameInterval")),
@@ -43,7 +42,6 @@ Player::Player(const Player& s) :
   Drawable(s),
   images_left(s.images_left),
   images_right(s.images_right),
-  bounds(s.bounds),
   currentFrame(s.currentFrame),
   numberOfFrames( s.numberOfFrames ),
   frameInterval( s.frameInterval ),
@@ -55,9 +53,8 @@ Player::Player(const Player& s) :
 
 Player& Player::operator=(const Player& s) {
   Drawable::operator=(s);
-  images_left = (s.images_left);
-  images_right = (s.images_right);
-  bounds = (s.bounds);
+  images_left = (s.images_left),
+  images_right = (s.images_right),
   currentFrame = (s.currentFrame);
   numberOfFrames = ( s.numberOfFrames );
   frameInterval = ( s.frameInterval );
@@ -133,9 +130,6 @@ void Player::down()  {
 }
 
 void Player::update(Uint32 ticks) {
-    
-
- 
 
   Vector2f incr = getVelocity() * static_cast<float>(ticks) * 0.001;
   setPosition(getPosition() + incr);

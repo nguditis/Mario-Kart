@@ -33,8 +33,11 @@ Engine::Engine() :
 }
 
 void Engine::draw() const {
+    
   //for(auto track: ground)
+    
   ground[0]->draw(renderer);
+    
   ground[1]->setScale(6);
 
   ground[1]->draw();
@@ -42,24 +45,24 @@ void Engine::draw() const {
   int fps = 0;
   std::stringstream ss;
 
-  std::string name = "Varsha and Nathan";
+  std::string name = "Nathan";
   fps = clock.getFps();
   ss << "Current FPS: " << fps;
 
   //std::cout<<"drawing engine"<<std::endl;
   SDL_Color color = {255,0,0,255};
   IoMod::getInstance().writeText(ss.str(), 10, 50);
-  IoMod::getInstance().writeText(name, 10, viewport.getHeight()-30, color); //overloaded function
+  IoMod::getInstance().writeText(name, 10, 450, color); //overloaded function
 
   viewport.draw();
   SDL_RenderPresent(renderer);
 }
 
 void Engine::update(Uint32 ticks) {
-  //std::cerr << "called engine update" << std::endl;
+  std::cerr << "called engine update" << std::endl;
 
-  //ground[1]-> update(ticks);
-   // viewport.update(); // always update viewport last
+  ground[1]-> update(ticks);
+    viewport.update(); // always update viewport last
 }
 
 void Engine::play() {
@@ -98,48 +101,24 @@ void Engine::play() {
     ticks = clock.getElapsedTicks();
     if ( ticks > 0 ) {
       clock.incrFrame();
-      int p_x = static_cast<Player*>(ground[1])->getX();
-      int p_y = static_cast<Player*>(ground[1])->getY();
-      float velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y);
-      //std::cout<<velocity<<std::endl;
+
       if (keystate[SDL_SCANCODE_W]) {
-        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 4, p_x, p_y))
-        {
-          static_cast<AngularSprite*>(ground[0])->update(10,4,velocity);
-        }
-      }
-      if (keystate[SDL_SCANCODE_S]) {
-        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 3, p_x, p_y))
-        {
-          static_cast<AngularSprite*>(ground[0])->update(10,3,velocity);
-        }
-      }
-        
-        ////// "snap back" to forward sprite
-      if (!keystate[SDL_SCANCODE_D]) {
         static_cast<Player*>(ground[1])->up();
+        static_cast<AngularSprite*>(ground[0])->update(10,4);
       }
-      if (!keystate[SDL_SCANCODE_A]) {
-        static_cast<Player*>(ground[1])->up();
-      }
-        /////
-        
-        
       if (keystate[SDL_SCANCODE_D]) {
-        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 2, p_x, p_y))
-        {
-            static_cast<Player*>(ground[1])->right(ticks);
-            static_cast<AngularSprite*>(ground[0])->update(10,2,velocity);
-        }
+        static_cast<Player*>(ground[1])->right(ticks);
+        static_cast<AngularSprite*>(ground[0])->update(10,2);
+      }
+
+
+      if (keystate[SDL_SCANCODE_S]) {
+        static_cast<AngularSprite*>(ground[0])->update(10,3);
       }
       if (keystate[SDL_SCANCODE_A]) {
-        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 1, p_x, p_y))
-        {
-          static_cast<Player*>(ground[1])->left(ticks);
+        static_cast<Player*>(ground[1])->left(ticks);
         //static_cast<Player*>(player)->down();
-         static_cast<AngularSprite*>(ground[0])->update(10,1,velocity);
-        }
-        
+       static_cast<AngularSprite*>(ground[0])->update(10,1);
       }
       if (keystate[SDL_SCANCODE_Y]) {
         //static_cast<Player*>(player)->down();
@@ -170,9 +149,11 @@ void Engine::play() {
             //static_cast<Player*>(player)->down();
             static_cast<AngularSprite*>(ground[0])->update(10,10);
 
-        }      
-       draw();
-      update(ticks);
+        }
+
+
+      draw();
+      ground[1]->update(ticks);
       if ( makeVideo ) {
         frameGen.makeFrame();
       }
