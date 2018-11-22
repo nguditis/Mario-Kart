@@ -4,6 +4,7 @@
 #include "drawable.h"
 #include <SDL.h>
 #include "SDL_image.h"
+#include <map>
 class AngularSprite : public Drawable {
 public:
   AngularSprite(const std::string&);
@@ -12,7 +13,7 @@ public:
   virtual void draw() const {};
   virtual void draw(SDL_Renderer *renderer) const;
   virtual void update(Uint32 ticks) ;
-  virtual void update(Uint32 ticks, int direction) ;
+  virtual void update(Uint32 ticks, int direction, float scale = 0.2f) ;
   //virtual void update(Uint32 ticks, const SDL_Renderer *renderer) ;
 
   virtual const Image* getImage() const {
@@ -27,27 +28,26 @@ public:
   virtual const SDL_Surface* getSurface() const {
     return image->getSurface();
   }
+  virtual bool checkVelocity(Uint32 ticks, int direction, float p_x, float p_y);
+  bool CheckNewValue(int x, int y);
 
-    virtual bool checkVelocity(Uint32 ticks, int direction, float p_x, float p_y);
-    bool CheckNewValue(int x, int y);
-    
-    float GrassVelocity(int x, int y);
+  float GrassVelocity(int x, int y);
+  
 protected:
   const Image * image;
-  SDL_Surface *surface1;
-  SDL_Surface *surface2;
-  // = IMG_Load("assets/frame1.png");
-    SDL_Surface *track;
-    SDL_Surface *sky;
-    SDL_Surface *grass;
-    SDL_Surface *blocks;
-    int worldWidth;
-    int worldHeight;
-  float fWorldX = 1000.0f;
-  float fWorldY = 1000.0f;
-  float fWorldA = 0.1f;
-  float fNear = 0.95f;
-  float fFar = 0.013f;
+  SDL_Surface *surface1; //NEW
+  SDL_Surface *surface2; //NEW
+  //SDL_Surface *track; //Surface2
+  //SDL_Surface *sky; //Surface1
+  SDL_Surface *grass;
+  SDL_Surface *blocks;
+  int worldWidth;
+  int worldHeight;
+  float fWorldX;// = 132.045f;
+  float fWorldY;// = 547.693f;
+  float fWorldA;// = 20.5f;
+  float fNear;// = 0.95f;
+  float fFar;// = -20.987f;
   float fFoVHalf = 3.14159f / 4.0f;
   AngularSprite& operator=(const AngularSprite&);
 };
