@@ -10,30 +10,31 @@
 
 class Engine {
 public:
-  Engine ();
-  ~Engine ();
-  void play();
+    Engine ();
+    Engine (std::vector<Tracks> t, int c);
+    ~Engine ();
+    void play();
 
 private:
-  const RenderContext& rc;
-  const IoMod& io;
-  Clock& clock;
-  SDL_Renderer * const renderer;
-  Viewport& viewport;
+    int currentCourse;
+    const RenderContext& rc;
+    const IoMod& io;
+    Clock& clock;
+    SDL_Renderer * const renderer;
+    Viewport& viewport;
     std::vector<Tracks> roads;
-  std::vector<Drawable*> ground;
-  bool makeVideo;
-
-  void draw() const;
-  void update(Uint32);
-
-  Engine(const Engine&)=delete;
-  Engine& operator=(const Engine&)=delete;
-  void printScales() const;
-  void checkForCollisions();
-  std::vector<std::string> people {"Mario", "Luigi","Peach","Bowser", "Koopa","Toad","DK","Yoshi"};
-  std::vector<Tracks> Cup(int cup);
-
-  int count = 0;
-
+    std::vector<Drawable*> ground;
+    bool makeVideo;
+    
+    void draw() const;
+    void update(Uint32);
+    
+    Engine(const Engine&)=delete;
+    Engine& operator=(const Engine&)=delete;
+    void printScales() const;
+    void checkForCollisions();
+    std::vector<std::string> people {"Mario", "Luigi","Peach","Bowser","Koopa","Toad","DK","Yoshi"};
+    
+    int count = 0;
+    
 };
