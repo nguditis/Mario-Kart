@@ -52,8 +52,6 @@ roads(t),
 ground({new AngularSprite("road", roads[c] ), new Player("Mario")}),
 makeVideo( false)
 {
-    std::cout << "currentCourse is " << currentCourse << std::endl;
-
     Viewport::getInstance().setObjectToTrack(ground[0]);
     //std::cout << "Loading complete" << std::endl;
     int count = 0;
@@ -142,12 +140,10 @@ void Engine::play() {
         float velocity;
         //std::cout << "The current course is " << roads[currentCourse].getName() << std::endl;
         if (roads[currentCourse].getGrass() != nullptr && roads[currentCourse].getDirt() == nullptr) {
-            std::cout << "here grass" << std::endl;
 
             velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[currentCourse].getGrass());
         }
         else if (roads[currentCourse].getDirt() != nullptr && roads[currentCourse].getGrass() != nullptr) {
-            std::cout << "here" << std::endl;
             velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[currentCourse].getDirt());
         }
         else if (roads[currentCourse].getDarkWater() != nullptr) {
