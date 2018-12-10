@@ -5,6 +5,8 @@
 #include "clock.h"
 #include "BackGround.h"
 #include "viewport.h"
+#include "tracks.h"
+
 
 class Engine {
 public:
@@ -28,4 +30,9 @@ private:
   Engine& operator=(const Engine&)=delete;
   void printScales() const;
   void checkForCollisions();
+  std::vector<std::string> people {"Mario", "Luigi","Peach","Bowser", "Koopa","Toad","DK","Yoshi"};
+  std::vector<Tracks> Cup(int cup);
+
+  int count = 0;
+
 };

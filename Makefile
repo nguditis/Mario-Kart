@@ -18,10 +18,11 @@ OBJS = \
 	frameGenerator.o \
 	sprite.o \
 	multisprite.o \
+	FrustumPoints.o \
 	AngularSprite.o \
 	twowaysprite.o \
 	vector2f.o \
-	collisionStrategy.o \
+	tracks.o \
 	player.o \
 	clock.o \
 	engine.o \

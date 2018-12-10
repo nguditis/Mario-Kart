@@ -104,13 +104,13 @@ void Player::left(Uint32 ticks)  {
     if (current_images == images_right){
         while (getCurrentFrameNum() > 0) {
 					//printf("current right to left frame num is %d\n", getCurrentFrameNum() );
-            reverseAdvanceFrame(ticks);
+            reverseAdvanceFrame(1);
         }
         current_images = images_left;
     }
     while (getCurrentFrameNum() > 0) {
 			//printf("current left to _Left frame num is %d\n", getCurrentFrameNum() );
-        reverseAdvanceFrame(ticks);
+        reverseAdvanceFrame(1);
     }
   /*if ( getX() > 0) {
     setVelocityX(-initialVelocity[0]);
@@ -133,10 +133,10 @@ void Player::down()  {
 }
 
 void Player::update(Uint32 ticks) {
-    
 
- 
 
+
+/*
   Vector2f incr = getVelocity() * static_cast<float>(ticks) * 0.001;
   setPosition(getPosition() + incr);
 
@@ -154,5 +154,5 @@ void Player::update(Uint32 ticks) {
     setVelocityX( -fabs( getVelocityX() ) );
   }
 
-  stop();
+  stop();*/
 }

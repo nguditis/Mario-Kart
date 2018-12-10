@@ -13,8 +13,6 @@
 #include "AngularSprite.h"
 #include "player.h"
 
-Tracks t = Tracks("Mario_Circut_1");
-
 Engine::~Engine() {
   for(auto track: ground)
 	delete track;
@@ -26,17 +24,14 @@ Engine::Engine() :
   clock( Clock::getInstance() ),
   renderer( rc.getRenderer() ),
   viewport( Viewport::getInstance() ),
-  //roads({Tracks("Mario_Circut_1")}),
-  ground({new AngularSprite("road", t ), new Player("Mario")}),
+  ground({new AngularSprite("road"), new Player("Mario")}),
+  //pixels(std::vector< unsigned char > ( Viewport::getInstance().getWidth() * Viewport::getInstance().getHeight() * 4, 0 )),
   makeVideo( false)
 {
-  
   Viewport::getInstance().setObjectToTrack(ground[0]);
   std::cout << "Loading complete" << std::endl;
   int count = 0;
-
 }
-
 
 void Engine::draw() const {
   //for(auto track: ground)
@@ -107,41 +102,22 @@ void Engine::play() {
     }
 
     // In this section of the event loop we allow key bounce:
-
-    ticks = clock.getElapsedTicks();
-    if ( ticks > 0 ) {
-      clock.incrFrame();
-      int p_x = static_cast<Player*>(ground[1])->getX();
-      int p_y = static_cast<Player*>(ground[1])->getY();
-        float velocity;
-        if (t.getGrass() != nullptr) {
-            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,t.getGrass());
+      
+      ticks = clock.getElapsedTicks();
+      if ( ticks > 0 ) {
+        clock.incrFrame();
+        int p_x = static_cast<Player*>(ground[1])->getX();
+        int p_y = static_cast<Player*>(ground[1])->getY();
+        //float velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y);
+        
+        if (keystate[SDL_SCANCODE_W]) {
+          static_cast<AngularSprite*>[ground[0]]->update(ticks, 4, p_x, p_y);
+            
         }
-        else if (t.getDirt() != nullptr) {
-            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,t.getDirt());
+        if (keystate[SDL_SCANCODE_S]) {
+          static_cast<AngularSprite*>[ground[0]]->update(ticks, 3, p_x, p_y);
+            
         }
-        else if (t.getDarkWater() != nullptr) {
-            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,t.getDarkWater());
-        }
-        else if (t.getEmpty() != nullptr) {
-            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,t.getEmpty());
-        }
-        else {
-            velocity = 0.5f;
-        }
-      //std::cout<<velocity<<std::endl;
-      if (keystate[SDL_SCANCODE_W]) {
-        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 4, p_x, p_y,velocity))
-        {
-          static_cast<AngularSprite*>(ground[0])->update(10,4,velocity);
-        }
-      }
-      if (keystate[SDL_SCANCODE_S]) {
-        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 3, p_x, p_y,velocity))
-        {
-          static_cast<AngularSprite*>(ground[0])->update(10,3,velocity);
-        }
-      }
 
         ////// "snap back" to forward sprite
       if (!keystate[SDL_SCANCODE_D]) {
@@ -154,56 +130,23 @@ void Engine::play() {
 
 
       if (keystate[SDL_SCANCODE_D]) {
-        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 2, p_x, p_y,velocity))
-        {
-            static_cast<Player*>(ground[1])->right(ticks);
-            static_cast<AngularSprite*>(ground[0])->update(10,2,velocity);
-        }
+          bool right = static_cast<AngularSprite*>[ground[0]]->update(ticks, 2, p_x, p_y);
+          if (right) {
+              static_cast<Player*>(ground[1])->right(ticks);
+          }
       }
       if (keystate[SDL_SCANCODE_A]) {
-        if(static_cast<AngularSprite*>(ground[0])->checkVelocity(ticks, 1, p_x, p_y,velocity))
-        {
-          static_cast<Player*>(ground[1])->left(ticks);
-        //static_cast<Player*>(player)->down();
-         static_cast<AngularSprite*>(ground[0])->update(10,1,velocity);
-        }
-
+          bool left = static_cast<AngularSprite*>[ground[0]]->update(ticks, 1, p_x, p_y);
+          if (left) {
+              static_cast<Player*>(ground[1])->left(ticks);
+          }
       }
-      if (keystate[SDL_SCANCODE_Y]) {
-        //static_cast<Player*>(player)->down();
-        static_cast<AngularSprite*>(ground[0])->update(10,5);
-
-      }
-      if (keystate[SDL_SCANCODE_H]) {
-        //static_cast<Player*>(player)->down();
-        static_cast<AngularSprite*>(ground[0])->update(10,6);
-
-      }
-        if (keystate[SDL_SCANCODE_U]) {
-            //static_cast<Player*>(player)->down();
-            static_cast<AngularSprite*>(ground[0])->update(10,7);
-
-        }
-        if (keystate[SDL_SCANCODE_J]) {
-            //static_cast<Player*>(player)->down();
-            static_cast<AngularSprite*>(ground[0])->update(10,8);
-
-        }
-        if (keystate[SDL_SCANCODE_I]) {
-            //static_cast<Player*>(player)->down();
-            static_cast<AngularSprite*>(ground[0])->update(10,9);
-
-        }
-        if (keystate[SDL_SCANCODE_K]) {
-            //static_cast<Player*>(player)->down();
-            static_cast<AngularSprite*>(ground[0])->update(10,10);
-
-        }
-       draw();
+      draw();
       update(ticks);
-      if ( makeVideo ) {
-        frameGen.makeFrame();
+          if ( makeVideo ) {
+              frameGen.makeFrame();
+              
+         }
       }
-    }
-  }
+   }
 }

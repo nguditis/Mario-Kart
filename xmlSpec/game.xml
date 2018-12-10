@@ -27,7 +27,7 @@
 
 <background>
   <width>1000</width>
-  <height>800</height>
+  <height>1000</height>
 </background>
 
 
@@ -41,8 +41,38 @@
 </font>
 
 <road>
-  <!--<file>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_full.png</file>-->
   <tracks>
+      <Bowser_Castle_1>
+          <full>assets/tracks/Bowser_Castle_1/Bowser_Castle_1_track_full.png</full>
+          <track>assets/tracks/Bowser_Castle_1/Bowser_Castle_1_track.png</track>
+          <lava>assets/tracks/Bowser_Castle_1/Bowser_Castle_1_lava.png</lava>
+          <boundry>assets/tracks/Bowser_Castle_1/Bowser_Castle_1_boundry.png</boundry>
+          <jump>assets/tracks/Bowser_Castle_1/Bowser_Castle_1_jump.png</jump>
+      </Bowser_Castle_1>
+      <Bowser_Castle_2>
+          <full>assets/tracks/Bowser_Castle_2/Bowser_Castle_2_track_full.png</full>
+          <track>assets/tracks/Bowser_Castle_2/Bowser_Castle_2_track.png</track>
+          <lava>assets/tracks/Bowser_Castle_2/Bowser_Castle_2_lava.png</lava>
+          <boundry>assets/tracks/Bowser_Castle_2/Bowser_Castle_2_boundry.png</boundry>
+          <jump>assets/tracks/Bowser_Castle_2/Bowser_Castle_2_jump.png</jump>
+      </Bowser_Castle_2>
+      <Bowser_Castle_3>
+          <full>assets/tracks/Bowser_Castle_3/Bowser_Castle_3_track_full.png</full>
+          <track>assets/tracks/Bowser_Castle_3/Bowser_Castle_3_track.png</track>
+          <lava>assets/tracks/Bowser_Castle_3/Bowser_Castle_3_lava.png</lava>
+          <boundry>assets/tracks/Bowser_Castle_3/Bowser_Castle_3_boundry.png</boundry>
+          <jump>assets/tracks/Bowser_Castle_3/Bowser_Castle_3_jump.png</jump>
+      </Bowser_Castle_3>
+      <Choco_Island_1>
+          <full>assets/tracks/Choco_Island_1/Choco_Island_1_track_full.png</full>
+          <track>assets/tracks/Choco_Island_1/Choco_Island_1_track.png</track>
+          <boundry>assets/tracks/Choco_Island_1/Choco_Island_1_boundry.png</boundry>
+      </Choco_Island_1>
+      <Choco_Island_2>
+          <full>assets/tracks/Choco_Island_2/Choco_Island_2_track_full.png</full>
+          <track>assets/tracks/Choco_Island_2/Choco_Island_2_track.png</track>
+          <boundry>assets/tracks/Choco_Island_2/Choco_Island_2_boundry.png</boundry>
+      </Choco_Island_2>
       <Donut_Plains_1>
           <full>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_full.png</full>
           <track>assets/tracks/Donut_Plains_1/Donut_Plains_1_track.png</track>
@@ -51,14 +81,96 @@
           <grass>assets/tracks/Donut_Plains_1/Donut_Plains_1_grass.png</grass>
       </Donut_Plains_1>
       <Donut_Plains_2>
-          <full>assets/tracks/Donut_Plains_2/Donut_Plains_1_track_full.png</full>
-          <track>assets/tracks/Donut_Plains_2/Donut_Plains_1_track.png</track>
-          <water>assets/tracks/Donut_Plains_2/Donut_Plains_1_water.png</water>
-          <boundry>assets/tracks/Donut_Plains_2/Donut_Plains_1_boundry.png</boundry>
-          <grass>assets/tracks/Donut_Plains_2/Donut_Plains_1_grass.png</grass>
+          <full>assets/tracks/Donut_Plains_2/Donut_Plains_2_track_full.png</full>
+          <track>assets/tracks/Donut_Plains_2/Donut_Plains_2_track.png</track>
+          <water>assets/tracks/Donut_Plains_2/Donut_Plains_2_water.png</water>
+          <boundry>assets/tracks/Donut_Plains_2/Donut_Plains_2_boundry.png</boundry>
+          <grass>assets/tracks/Donut_Plains_2/Donut_Plains_2_grass.png</grass>
       </Donut_Plains_2>
-
-
+      <Donut_Plains_3>
+          <full>assets/tracks/Donut_Plains_3/Donut_Plains_3_track_full.png</full>
+          <track>assets/tracks/Donut_Plains_3/Donut_Plains_3_track.png</track>
+          <water>assets/tracks/Donut_Plains_3/Donut_Plains_3_water.png</water>
+          <boundry>assets/tracks/Donut_Plains_3/Donut_Plains_3_boundry.png</boundry>
+          <grass>assets/tracks/Donut_Plains_3/Donut_Plains_3_grass.png</grass>
+      </Donut_Plains_3>
+      <Ghost_Valley_1>
+          <full>assets/tracks/Ghost_Valley_1/Ghost_Valley_1_track_full.png</full>
+          <track>assets/tracks/Ghost_Valley_1/Ghost_Valley_1_track.png</track>
+          <boundry>assets/tracks/Ghost_Valley_1/Ghost_Valley_1_boundry.png</boundry>
+          <jump>assets/tracks/Ghost_Valley_1/Ghost_Valley_1_jump.png</jump>
+      </Ghost_Valley_1>
+      <Ghost_Valley_2>
+          <full>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_track_full.png</full>
+          <track>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_track.png</track>
+          <boundry>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_boundry.png</boundry>
+          <jump>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_jump.png</jump>
+      </Ghost_Valley_2>
+      <Ghost_Valley_3>
+          <full>assets/tracks/Ghost_Valley_3/Ghost_Valley_3_track_full.png</full>
+          <track>assets/tracks/Ghost_Valley_3/Ghost_Valley_3_track.png</track>
+          <boundry>assets/tracks/Ghost_Valley_3/Ghost_Valley_3_boundry.png</boundry>
+          <jump>assets/tracks/Ghost_Valley_3/Ghost_Valley_3_jump.png</jump>
+      </Ghost_Valley_3>
+      <Koopa_Beach_1>
+          <full>assets/tracks/Koopa_Beach_1/Koopa_Beach_1_track_full.png</full>
+          <track>assets/tracks/Koopa_Beach_1/Koopa_Beach_1_track.png</track>
+          <darkWater>assets/tracks/Koopa_Beach_1/Koopa_Beach_1_dark_water.png</darkWater>
+          <boundry>assets/tracks/Koopa_Beach_1/Koopa_Beach_1_boundry.png</boundry>
+          <lightWater>assets/tracks/Koopa_Beach_1/Koopa_Beach_1_light_water.png</lightWater>
+      </Koopa_Beach_1>
+      <Koopa_Beach_2>
+          <full>assets/tracks/Koopa_Beach_2/Koopa_Beach_2_track_full.png</full>
+          <track>assets/tracks/Koopa_Beach_2/Koopa_Beach_2_track.png</track>
+          <darkWater>assets/tracks/Koopa_Beach_2/Koopa_Beach_2_dark_water.png</darkWater>
+          <boundry>assets/tracks/Koopa_Beach_2/Koopa_Beach_2_boundry.png</boundry>
+          <lightWater>assets/tracks/Koopa_Beach_2/Koopa_Beach_2_light_water.png</lightWater>
+      </Koopa_Beach_2>
+      <Mario_Circut_1>
+          <full>assets/tracks/Mario_Circut_1/Mario_Circut_1_track_full.png</full>
+          <track>assets/tracks/Mario_Circut_1/Mario_Circut_1_track.png</track>
+          <grass>assets/tracks/Mario_Circut_1/Mario_Circut_1_grass.png</grass>
+          <boundry>assets/tracks/Mario_Circut_1/Mario_Circut_1_boundry.png</boundry>
+          <dirt>assets/tracks/Mario_Circut_1/Mario_Circut_1_dirt.png</dirt>
+      </Mario_Circut_1>
+      <Mario_Circut_2>
+          <full>assets/tracks/Mario_Circut_2/Mario_Circut_2_track_full.png</full>
+          <track>assets/tracks/Mario_Circut_2/Mario_Circut_2_track.png</track>
+          <grass>assets/tracks/Mario_Circut_2/Mario_Circut_2_grass.png</grass>
+          <boundry>assets/tracks/Mario_Circut_2/Mario_Circut_2_boundry.png</boundry>
+          <dirt>assets/tracks/Mario_Circut_2/Mario_Circut_2_dirt.png</dirt>
+      </Mario_Circut_2>
+      <Mario_Circut_3>
+          <full>assets/tracks/Mario_Circut_3/Mario_Circut_3_track_full.png</full>
+          <track>assets/tracks/Mario_Circut_3/Mario_Circut_3_track.png</track>
+          <grass>assets/tracks/Mario_Circut_3/Mario_Circut_3_grass.png</grass>
+          <boundry>assets/tracks/Mario_Circut_3/Mario_Circut_3_boundry.png</boundry>
+          <dirt>assets/tracks/Mario_Circut_3/Mario_Circut_3_dirt.png</dirt>
+      </Mario_Circut_3>
+      <Mario_Circut_4>
+          <full>assets/tracks/Mario_Circut_4/Mario_Circut_4_track_full.png</full>
+          <track>assets/tracks/Mario_Circut_4/Mario_Circut_4_track.png</track>
+          <grass>assets/tracks/Mario_Circut_4/Mario_Circut_4_grass.png</grass>
+          <boundry>assets/tracks/Mario_Circut_4/Mario_Circut_4_boundry.png</boundry>
+          <dirt>assets/tracks/Mario_Circut_4/Mario_Circut_4_dirt.png</dirt>
+      </Mario_Circut_4>
+      <Rainbow_Road>
+          <full>assets/tracks/Rainbow_Road/Rainbow_Road_track_full.png</full>
+          <track>assets/tracks/Rainbow_Road/Rainbow_Road_track.png</track>
+          <empty>assets/tracks/Rainbow_Road/Rainbow_Road_empty.png</empty>
+      </Rainbow_Road>
+      <Vanilla_Lake_1>
+          <full>assets/tracks/Vanilla_Lake_1/Vanilla_Lake_1_track_full.png</full>
+          <track>assets/tracks/Vanilla_Lake_1/Vanilla_Lake_1_track.png</track>
+          <water>assets/tracks/Vanilla_Lake_1/Vanilla_Lake_1_water.png</water>
+          <boundry>assets/tracks/Vanilla_Lake_1/Vanilla_Lake_1_boundry.png</boundry>
+      </Vanilla_Lake_1>
+      <Vanilla_Lake_2>
+          <full>assets/tracks/Vanilla_Lake_2/Vanilla_Lake_2_track_full.png</full>
+          <track>assets/tracks/Vanilla_Lake_2/Vanilla_Lake_2_track.png</track>
+          <water>assets/tracks/Vanilla_Lake_2/Vanilla_Lake_2_water.png</water>
+          <boundry>assets/tracks/Vanilla_Lake_2/Vanilla_Lake_2_boundry.png</boundry>
+      </Vanilla_Lake_2>
   </tracks>
 
   <startLoc x="500" y="500"/>
@@ -106,69 +218,233 @@
   <transparency>true</transparency>
 </Mario_Left>
 
+<Mario_AI>
+    <file>assets/players/marioAI.png</file>
+    <startLoc x="300" y="570"/>
+    <frames>23</frames>
+    <frameInterval>0</frameInterval>
+    <speedX>0</speedX>
+    <speedY>0</speedY>
+    <transparency>true</transparency>
+</Mario_AI>
+
 <Luigi>
-  <file>assets/stars.png</file>
-  <startLoc x="50" y="140"/>
+  <file>assets/players/luigiRight.png</file>
+  <startLoc x="400" y="570"/>
   <frames>4</frames>
   <frameInterval>50</frameInterval>
   <speedX>200</speedX>
   <speedY>200</speedY>
   <transparency>true</transparency>
 </Luigi>
+
+
+<Luigi_Right>
+  <file>assets/players/luigiRight.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Luigi_Right>
+
+<Luigi_Left>
+  <file>assets/players/luigiLeft.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Luigi_Left>
+
 <Peach>
-  <file>assets/stars.png</file>
-  <startLoc x="50" y="140"/>
+  <file>assets/players/peachRight.png</file>
+  <startLoc x="400" y="570"/>
   <frames>4</frames>
   <frameInterval>50</frameInterval>
   <speedX>200</speedX>
   <speedY>200</speedY>
   <transparency>true</transparency>
 </Peach>
+
+
+<Peach_Right>
+  <file>assets/players/peachRight.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Peach_Right>
+
+<Peach_Left>
+  <file>assets/players/peachLeft.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Peach_Left>
+
 <Bowser>
-  <file>assets/stars.png</file>
-  <startLoc x="50" y="140"/>
+  <file>assets/players/bowserRight.png</file>
+  <startLoc x="400" y="570"/>
   <frames>4</frames>
   <frameInterval>50</frameInterval>
   <speedX>200</speedX>
   <speedY>200</speedY>
   <transparency>true</transparency>
 </Bowser>
+
+
+<Bowser_Right>
+  <file>assets/players/bowserRight.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Bowser_Right>
+
+<Bowser_Left>
+  <file>assets/players/bowserLeft.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Bowser_Left>
+
+
 <Koopa>
-  <file>assets/stars.png</file>
-  <startLoc x="50" y="140"/>
+  <file>assets/players/koopaRight.png</file>
+  <startLoc x="400" y="570"/>
   <frames>4</frames>
   <frameInterval>50</frameInterval>
   <speedX>200</speedX>
   <speedY>200</speedY>
   <transparency>true</transparency>
 </Koopa>
-<DKjr>
-  <file>assets/stars.png</file>
-  <startLoc x="50" y="140"/>
+
+
+<Koopa_Right>
+  <file>assets/players/koopaRight.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Koopa_Right>
+
+<Koopa_Left>
+  <file>assets/players/koopaLeft.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Koopa_Left>
+
+
+<DK>
+  <file>assets/players/dkRight.png</file>
+  <startLoc x="400" y="570"/>
   <frames>4</frames>
   <frameInterval>50</frameInterval>
   <speedX>200</speedX>
   <speedY>200</speedY>
   <transparency>true</transparency>
-</DKjr>
+</DK>
+
+
+<DK_Right>
+  <file>assets/players/dkRight.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</DK_Right>
+
+<DK_Left>
+  <file>assets/players/dkLeft.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</DK_Left>
+
 <Toad>
-  <file>assets/stars.png</file>
-  <startLoc x="50" y="140"/>
+  <file>assets/players/toadRight.png</file>
+  <startLoc x="400" y="570"/>
   <frames>4</frames>
   <frameInterval>50</frameInterval>
   <speedX>200</speedX>
   <speedY>200</speedY>
   <transparency>true</transparency>
 </Toad>
+
+
+<Toad_Right>
+  <file>assets/players/toadRight.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Toad_Right>
+
+<Toad_Left>
+  <file>assets/players/toadLeft.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Toad_Left>
 <Yoshi>
-  <file>assets/stars.png</file>
-  <startLoc x="50" y="140"/>
+  <file>assets/players/yoshiRight.png</file>
+  <startLoc x="400" y="570"/>
   <frames>4</frames>
   <frameInterval>50</frameInterval>
   <speedX>200</speedX>
   <speedY>200</speedY>
   <transparency>true</transparency>
 </Yoshi>
+
+
+<Yoshi_Right>
+  <file>assets/players/yoshiRight.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Yoshi_Right>
+
+<Yoshi_Left>
+  <file>assets/players/yoshiLeft.png</file>
+  <startLoc x="500" y="740"/>
+  <frames>4</frames>
+  <frameInterval>5</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</Yoshi_Left>
 
 
 
