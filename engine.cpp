@@ -13,7 +13,7 @@
 #include "AngularSprite.h"
 #include "player.h"
 
-Tracks t = Tracks("Mario_Circut_1");
+//Tracks t = Tracks("Mario_Circut_1");
 
 Engine::~Engine() {
   for(auto track: ground)
@@ -26,8 +26,8 @@ Engine::Engine() :
   clock( Clock::getInstance() ),
   renderer( rc.getRenderer() ),
   viewport( Viewport::getInstance() ),
-  //roads({Tracks("Mario_Circut_1")}),
-  ground({new AngularSprite("road", t ), new Player("Mario")}),
+  roads({Tracks("Mario_Circut_1")}),
+ground({new AngularSprite("road", roads[0] ), new Player("Mario")}),
   makeVideo( false)
 {
   
@@ -114,17 +114,17 @@ void Engine::play() {
       int p_x = static_cast<Player*>(ground[1])->getX();
       int p_y = static_cast<Player*>(ground[1])->getY();
         float velocity;
-        if (t.getGrass() != nullptr) {
-            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,t.getGrass());
+        if (roads[0].getGrass() != nullptr) {
+            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[0].getGrass());
         }
-        else if (t.getDirt() != nullptr) {
-            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,t.getDirt());
+        else if (roads[0].getDirt() != nullptr) {
+            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[0].getDirt());
         }
-        else if (t.getDarkWater() != nullptr) {
-            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,t.getDarkWater());
+        else if (roads[0].getDarkWater() != nullptr) {
+            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[0].getDarkWater());
         }
-        else if (t.getEmpty() != nullptr) {
-            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,t.getEmpty());
+        else if (roads[0].getEmpty() != nullptr) {
+            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[0].getEmpty());
         }
         else {
             velocity = 0.5f;

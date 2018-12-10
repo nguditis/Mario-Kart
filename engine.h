@@ -20,6 +20,7 @@ private:
   Clock& clock;
   SDL_Renderer * const renderer;
   Viewport& viewport;
+    std::vector<Tracks> roads;
   std::vector<Drawable*> ground;
   bool makeVideo;
 
