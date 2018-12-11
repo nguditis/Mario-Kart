@@ -10,7 +10,7 @@ std::string path = "road/tracks/";
 Tracks::Tracks(std::string name){
     if (name.find("Bowser") != std::string::npos) {
         if (name.find("1") != std::string::npos) {
-            this->name = "Bower_Castle_1";
+            this->name = "Bowser_Castle_1";
             std::cout << "Loading " << this->name << std::endl;
             this->full = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/full").c_str());
             this->track = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/track").c_str());
@@ -26,7 +26,7 @@ Tracks::Tracks(std::string name){
 
         }
         if (name.find("2") != std::string::npos) {
-            this->name = "Bower_Castle_2";
+            this->name = "Bowser_Castle_2";
             std::cout << "Loading " << this->name << std::endl;
             this->full = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/full").c_str());
             this->track = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/track").c_str());
@@ -42,7 +42,7 @@ Tracks::Tracks(std::string name){
 
         }
         if (name.find("3") != std::string::npos) {
-            this->name = "Bower_Castle_3";
+            this->name = "Bowser_Castle_3";
             std::cout << "Loading " << this->name << std::endl;
             this->full = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/full").c_str());
             this->track = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/track").c_str());
@@ -68,7 +68,7 @@ Tracks::Tracks(std::string name){
             this->grass = nullptr;
             this->lightWater = nullptr;
             this->darkWater = nullptr;
-            this->dirt = nullptr;
+            this->dirt = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/dirt").c_str());
             this->jump = nullptr;
             this->lava = nullptr;
             this->empty = nullptr;
@@ -84,7 +84,7 @@ Tracks::Tracks(std::string name){
             this->grass = nullptr;
             this->lightWater = nullptr;
             this->darkWater = nullptr;
-            this->dirt = nullptr;
+            this->dirt = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/dirt").c_str());
             this->jump = nullptr;
             this->lava = nullptr;
             this->empty = nullptr;
@@ -152,7 +152,7 @@ Tracks::Tracks(std::string name){
             this->dirt = nullptr;
             this->jump = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/jump").c_str());
             this->lava = nullptr;
-            this->empty = nullptr;
+            this->empty = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/empty").c_str());
         }
         
         if (name.find("2") != std::string::npos) {
@@ -169,7 +169,7 @@ Tracks::Tracks(std::string name){
             std::cout << "Loading " << this->name << std::endl;
             this->jump = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/jump").c_str());
             this->lava = nullptr;
-            this->empty = nullptr;
+            this->empty = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/empty").c_str());
         }
         if (name.find("3") != std::string::npos) {
             this->name = "Ghost_Valley_3";
@@ -184,7 +184,7 @@ Tracks::Tracks(std::string name){
             this->dirt = nullptr;
             this->jump = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/jump").c_str());
             this->lava = nullptr;
-            this->empty = nullptr;
+            this->empty = IMG_Load(Gamedata::getInstance().getXmlStr(path+name+"/empty").c_str());
         }
     }
     if (name.find("Koopa") != std::string::npos) {

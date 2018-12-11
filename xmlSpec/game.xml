@@ -66,11 +66,13 @@
       <Choco_Island_1>
           <full>assets/tracks/Choco_Island_1/Choco_Island_1_track_full.png</full>
           <track>assets/tracks/Choco_Island_1/Choco_Island_1_track.png</track>
+          <dirt>assets/tracks/Choco_Island_1/Choco_Island_1_dirt.png</dirt>
           <boundry>assets/tracks/Choco_Island_1/Choco_Island_1_boundry.png</boundry>
       </Choco_Island_1>
       <Choco_Island_2>
           <full>assets/tracks/Choco_Island_2/Choco_Island_2_track_full.png</full>
           <track>assets/tracks/Choco_Island_2/Choco_Island_2_track.png</track>
+          <dirt>assets/tracks/Choco_Island_2/Choco_Island_2_dirt.png</dirt>
           <boundry>assets/tracks/Choco_Island_2/Choco_Island_2_boundry.png</boundry>
       </Choco_Island_2>
       <Donut_Plains_1>
@@ -99,18 +101,22 @@
           <track>assets/tracks/Ghost_Valley_1/Ghost_Valley_1_track.png</track>
           <boundry>assets/tracks/Ghost_Valley_1/Ghost_Valley_1_boundry.png</boundry>
           <jump>assets/tracks/Ghost_Valley_1/Ghost_Valley_1_jump.png</jump>
+          <empty>assets/tracks/Ghost_Valley_1/Ghost_Valley_1_empty.png</empty>
       </Ghost_Valley_1>
       <Ghost_Valley_2>
           <full>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_track_full.png</full>
           <track>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_track.png</track>
           <boundry>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_boundry.png</boundry>
           <jump>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_jump.png</jump>
+          <empty>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_empty.png</empty>
+
       </Ghost_Valley_2>
       <Ghost_Valley_3>
           <full>assets/tracks/Ghost_Valley_3/Ghost_Valley_3_track_full.png</full>
           <track>assets/tracks/Ghost_Valley_3/Ghost_Valley_3_track.png</track>
           <boundry>assets/tracks/Ghost_Valley_3/Ghost_Valley_3_boundry.png</boundry>
           <jump>assets/tracks/Ghost_Valley_3/Ghost_Valley_3_jump.png</jump>
+          <empty>assets/tracks/Ghost_Valley_3/Ghost_Valley_3_empty.png</empty>
       </Ghost_Valley_3>
       <Koopa_Beach_1>
           <full>assets/tracks/Koopa_Beach_1/Koopa_Beach_1_track_full.png</full>

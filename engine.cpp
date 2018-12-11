@@ -13,7 +13,10 @@
 #include "AngularSprite.h"
 #include "player.h"
 
-//Tracks t = Tracks("Mario_Circut_1");
+
+
+int currentCourse;
+
 
 Engine::~Engine() {
   for(auto track: ground)
@@ -21,19 +24,40 @@ Engine::~Engine() {
   std::cout << "Terminating program" << std::endl;
 }
 Engine::Engine() :
+  currentCourse(0),
   rc( RenderContext::getInstance() ),
   io( IoMod::getInstance() ),
   clock( Clock::getInstance() ),
   renderer( rc.getRenderer() ),
   viewport( Viewport::getInstance() ),
   roads({Tracks("Mario_Circut_1")}),
-ground({new AngularSprite("road", roads[0] ), new Player("Mario")}),
+  ground({new AngularSprite("road", roads[0] ), new Player("Mario")}),
   makeVideo( false)
 {
   
   Viewport::getInstance().setObjectToTrack(ground[0]);
   std::cout << "Loading complete" << std::endl;
   int count = 0;
+
+}
+
+Engine::Engine(std::vector<Tracks> t, int c) :
+currentCourse(c),
+rc( RenderContext::getInstance() ),
+io( IoMod::getInstance() ),
+clock( Clock::getInstance() ),
+renderer( rc.getRenderer() ),
+viewport( Viewport::getInstance() ),
+roads(t),
+ground({new AngularSprite("road", roads[c] ), new Player("Mario")}),
+makeVideo( false)
+{
+    Viewport::getInstance().setObjectToTrack(ground[0]);
+    //std::cout << "Loading complete" << std::endl;
+    int count = 0;
+    int currentCourse = c;
+    //std::cout << "currentCourse is " << currentCourse << std::endl;
+    //std::cout << "The current course is " << roads[currentCourse].getName() << std::endl;
 
 }
 
@@ -114,17 +138,19 @@ void Engine::play() {
       int p_x = static_cast<Player*>(ground[1])->getX();
       int p_y = static_cast<Player*>(ground[1])->getY();
         float velocity;
-        if (roads[0].getGrass() != nullptr) {
-            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[0].getGrass());
+        //std::cout << "The current course is " << roads[currentCourse].getName() << std::endl;
+        if (roads[currentCourse].getGrass() != nullptr && roads[currentCourse].getDirt() == nullptr) {
+
+            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[currentCourse].getGrass());
         }
-        else if (roads[0].getDirt() != nullptr) {
-            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[0].getDirt());
+        else if (roads[currentCourse].getDirt() != nullptr && roads[currentCourse].getGrass() != nullptr) {
+            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[currentCourse].getDirt());
         }
-        else if (roads[0].getDarkWater() != nullptr) {
-            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[0].getDarkWater());
+        else if (roads[currentCourse].getDarkWater() != nullptr) {
+            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[currentCourse].getDarkWater());
         }
-        else if (roads[0].getEmpty() != nullptr) {
-            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[0].getEmpty());
+        else if (roads[currentCourse].getEmpty() != nullptr) {
+            velocity = static_cast<AngularSprite*>(ground[0])->GrassVelocity(p_x,p_y,roads[currentCourse].getEmpty());
         }
         else {
             velocity = 0.5f;
