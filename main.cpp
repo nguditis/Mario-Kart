@@ -37,6 +37,7 @@ int main(int, char*[]) {
     
    try {
       Engine *engine = new Engine(Cups[0], 2);
+
       engine->play();
    }
    catch (const string& msg) { std::cout << msg << std::endl; }
