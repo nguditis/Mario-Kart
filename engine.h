@@ -6,6 +6,8 @@
 #include "BackGround.h"
 #include "viewport.h"
 #include "tracks.h"
+#include "menuEngine.h"
+
 
 
 class Engine {
@@ -21,11 +23,14 @@ private:
     const IoMod& io;
     Clock& clock;
     SDL_Renderer * const renderer;
+    MenuEngine menuEngine;
+
     Viewport& viewport;
+    Vector2f menuMsgLoc;
     std::vector<Tracks> roads;
     std::vector<Drawable*> ground;
     bool makeVideo;
-    
+    int Loop;
     void draw() const;
     void update(Uint32);
     

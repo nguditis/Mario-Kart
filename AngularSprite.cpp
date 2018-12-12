@@ -50,10 +50,13 @@ AngularSprite::AngularSprite( const std::string& name) :
   sky( IMG_Load(Gamedata::getInstance().getXmlStr("sky/file").c_str())),
   grass( IMG_Load(Gamedata::getInstance().getXmlStr("road/tracks/Donut_Plains_1/grass").c_str())),
   bounds( IMG_Load(Gamedata::getInstance().getXmlStr("road/tracks/Donut_Plains_1/boundry").c_str())),
+  start( IMG_Load(Gamedata::getInstance().getXmlStr("road/tracks/Donut_Plains_1/track_start").c_str())),
   worldWidth(Gamedata::getInstance().getXmlInt("background/width")),
   worldHeight(Gamedata::getInstance().getXmlInt("background/height")),
   cfp (FrustumPoints::getInstance())
-{ }
+ {
+
+ }
 
 AngularSprite::AngularSprite( const std::string& name,  Tracks& t) :
 Drawable(name,
@@ -67,6 +70,7 @@ track( t.getTrack() ),
 sky( IMG_Load(Gamedata::getInstance().getXmlStr("sky/file").c_str())),
 grass(  t.getGrass() ),
 bounds( t.getBounds() ),
+start( t.getStart() ),
 worldWidth(Gamedata::getInstance().getXmlInt("background/width")),
 worldHeight(Gamedata::getInstance().getXmlInt("background/height")),
 cfp (FrustumPoints::getInstance())
@@ -79,10 +83,12 @@ AngularSprite::AngularSprite(const AngularSprite& s) :
   sky(s.sky),
   grass(s.grass),
   bounds(s.bounds),
+  start(s.start),
   worldWidth( s.worldWidth ),
-  worldHeight( s.worldHeight ),
-  cfp(s.cfp)
-  { }
+  worldHeight( s.worldHeight ), 
+  cfp(FrustumPoints::getInstance())
+  {
+  }
 
 AngularSprite& AngularSprite::operator=(const AngularSprite& s) {
   Drawable::operator=(s);
@@ -91,81 +97,115 @@ AngularSprite& AngularSprite::operator=(const AngularSprite& s) {
   sky = s.sky;
   grass = s.grass;
   bounds = s.bounds;
+  start = s.start;
   worldWidth = ( s.worldWidth );
   worldHeight = ( s.worldHeight );
-  cfp = (s.cfp);
+  //cfp = (FrustumPoints::getInstance());
   return *this;
+}
+bool AngularSprite::checkLap(float p_x, float p_y, SDL_Surface *s)
+{
+    if(mapCheck(p_x,p_y,s))
+        {
+          return true;
+        }  
+    return false;
 }
 bool AngularSprite::checkVelocity(Uint32 ticks, int direction, float p_x, float p_y, float factor)
 {
-
+  
     if(direction == 1)
     {
       //cfp.fNear -= 0.1f * ticks;
-      cfp.fWorldA -= factor;
-      bool blocked = CheckNewValue(p_x, p_y, bounds);
-      cfp.fWorldA += factor;
+      float fWorldA = cfp.getfWorldA();
+      cfp.setfWorldA(fWorldA-factor);
+      bool blocked = CheckNewValue(p_x, p_y,bounds);
+      cfp.setfWorldA(fWorldA);
       return blocked;
     }
     else if (direction == 2)
     {
-      cfp.fWorldA += factor;
-      bool blocked = CheckNewValue(p_x, p_y, bounds);
-      cfp.fWorldA -= factor;
+      float fWorldA = cfp.getfWorldA();
+      cfp.setfWorldA(fWorldA+factor);
+      bool blocked = CheckNewValue(p_x, p_y,bounds);
+      cfp.setfWorldA(fWorldA);
       return blocked;
     }
     else if(direction ==3)
     {
-      cfp.fWorldX += cosf(cfp.fWorldA) * factor * ticks;
-      cfp.fWorldY += sinf(cfp.fWorldA) * factor * ticks;
-        bool blocked = CheckNewValue(p_x, p_y, bounds);
-      cfp.fWorldX -= cosf(cfp.fWorldA) * factor * ticks;
-      cfp.fWorldY -= sinf(cfp.fWorldA) * factor * ticks;
+      float fWorldX = cfp.getfWorldX(); 
+      float fWorldY = cfp.getfWorldY();
+      cfp.setfWorldX(fWorldX+cosf(cfp.getfWorldA()) * factor * ticks);
+      cfp.setfWorldY(fWorldY+sinf(cfp.getfWorldA()) * factor * ticks);
+      bool blocked = CheckNewValue(p_x, p_y,bounds);
+      cfp.setfWorldX(fWorldX);
+      cfp.setfWorldY(fWorldY);
       return blocked;
       
     }
     else if (direction == 4)
     {
 
-      cfp.fWorldX -= cosf(cfp.fWorldA) * factor* ticks;
-      cfp.fWorldY -= sinf(cfp.fWorldA) * factor * ticks;
-        bool blocked = CheckNewValue(p_x, p_y, bounds);
-
-      cfp.fWorldX += cosf(cfp.fWorldA) * factor* ticks;
-      cfp.fWorldY += sinf(cfp.fWorldA) * factor * ticks;
+      float fWorldX = cfp.getfWorldX(); 
+      float fWorldY = cfp.getfWorldY();
+      cfp.setfWorldX(fWorldX-cosf(cfp.getfWorldA()) * factor * ticks);
+      cfp.setfWorldY(fWorldY-sinf(cfp.getfWorldA()) * factor * ticks);
+      bool blocked = CheckNewValue(p_x, p_y,bounds);
+      cfp.setfWorldX(fWorldX);
+      cfp.setfWorldY(fWorldY);
       return blocked;
     }
     else if (direction == 5)
     {
-      //cfp.fFoVHalf -= 0.2f * ticks;
-      cfp.fNear -= 0.1f * ticks;
+      float fNear = cfp.getfNear();
+      cfp.setfNear(cfp.getfNear()-0.1f * ticks);
+      bool blocked = CheckNewValue(p_x, p_y,bounds);
+      cfp.setfNear(fNear);
+      return blocked;
     }
     else if (direction == 6)
     {
-      //cfp.fFoVHalf += 0.2f * ticks;
-      cfp.fNear += 0.1f * ticks;
+      float fNear = cfp.getfNear();
+      cfp.setfNear(cfp.getfNear()+0.1f * ticks);
+      bool blocked = CheckNewValue(p_x, p_y,bounds);
+      cfp.setfNear(fNear);
+      return blocked;
 
     }
     else if (direction == 7)
     {
         //cfp.fFoVHalf -= 0.2f * ticks;
-        cfp.fFar -= 0.1f * ticks;
+      float fFar = cfp.getfFar();
+      cfp.setfFar(cfp.getfFar()-0.1f * ticks);
+      bool blocked = CheckNewValue(p_x, p_y,bounds);
+      cfp.setfFar(fFar);
+      return blocked;
+
     }
     else if (direction == 8)
     {
-        //cfp.fFoVHalf += 0.2f * ticks;
-        cfp.fFar += 0.1f * ticks;
-
+      float fFar = cfp.getfFar();
+      cfp.setfFar(cfp.getfFar()+0.1f * ticks);
+      bool blocked = CheckNewValue(p_x, p_y,bounds);
+      cfp.setfFar(fFar);
+      return blocked;
     }
     else if (direction == 9)
     {
         //cfp.fFoVHalf -= 0.2f * ticks;
-        cfp.fFoVHalf -= 0.1f;
+      float fFoVHalf = cfp.getfFoVHalf();
+      cfp.setfFoVHalf(cfp.getfFoVHalf()-0.1f * ticks);
+      bool blocked = CheckNewValue(p_x, p_y,bounds);
+      cfp.setfFoVHalf(fFoVHalf);
+      return blocked;
     }
     else if (direction == 10)
     {
-        //cfp.fFoVHalf += 0.2f * ticks;
-        cfp.fFoVHalf += 0.1f;
+      float fFoVHalf = cfp.getfFoVHalf();
+      cfp.setfFoVHalf(cfp.getfFoVHalf()+0.1f * ticks);
+      bool blocked = CheckNewValue(p_x, p_y,bounds);
+      cfp.setfFoVHalf(fFoVHalf);
+      return blocked;
 
     }
     return true;
@@ -174,84 +214,85 @@ bool AngularSprite::checkVelocity(Uint32 ticks, int direction, float p_x, float 
 void AngularSprite::update(Uint32 ticks){}
 void AngularSprite::update(Uint32 ticks, int direction, float factor)
 {
-   
     if(direction == 1)
     {
       //cfp.fNear -= 0.1f * ticks;
-      cfp.fWorldA -= factor;
+      cfp.setfWorldA(cfp.getfWorldA()-factor);
     }
     else if (direction == 2)
     {
-      cfp.fWorldA += factor;
-      //cfp.fNear += 0.1f * ticks;
+      cfp.setfWorldA(cfp.getfWorldA()+factor);
     }
     else if(direction ==3)
     {
-      cfp.fWorldX += cosf(cfp.fWorldA) * factor* ticks;
-      cfp.fWorldY += sinf(cfp.fWorldA) * factor * ticks;
+      float fWorldX = cfp.getfWorldX(); 
+      float fWorldY = cfp.getfWorldY();
+      cfp.setfWorldX(fWorldX+cosf(cfp.getfWorldA()) * factor * ticks);
+      cfp.setfWorldY(fWorldY+sinf(cfp.getfWorldA()) * factor * ticks);
     }
     else if (direction == 4)
     {
-      cfp.fWorldX -= cosf(cfp.fWorldA) * factor * ticks;
-      cfp.fWorldY -= sinf(cfp.fWorldA) * factor * ticks;
+      float fWorldX = cfp.getfWorldX(); 
+      float fWorldY = cfp.getfWorldY();
+      cfp.setfWorldX(fWorldX-cosf(cfp.getfWorldA()) * factor * ticks);
+      cfp.setfWorldY(fWorldY-sinf(cfp.getfWorldA()) * factor * ticks);
+      //std::cout<<"values in Sprite "<<cfp.getfWorldX()<<" " <<cfp.getfWorldY()<<std::endl;
+
     }
     else if (direction == 5)
     {
-      //cfp.fFoVHalf -= 0.2f * ticks;
-      cfp.fNear -= 0.1f * ticks;
+      cfp.setfNear(cfp.getfNear()-0.1f * ticks);
     }
     else if (direction == 6)
     {
       //cfp.fFoVHalf += 0.2f * ticks;
-      cfp.fNear += 0.1f * ticks;
+      cfp.setfNear(cfp.getfNear()+0.1f * ticks);
 
     }
     else if (direction == 7)
     {
         //cfp.fFoVHalf -= 0.2f * ticks;
-        cfp.fFar -= 0.1f * ticks;
+        cfp.setfFar(cfp.getfFar()-0.1f * ticks);
     }
     else if (direction == 8)
     {
         //cfp.fFoVHalf += 0.2f * ticks;
-        cfp.fFar += 0.1f * ticks;
+        cfp.setfFar(cfp.getfFar()+0.1f * ticks);
 
     }
     else if (direction == 9)
     {
         //cfp.fFoVHalf -= 0.2f * ticks;
-        cfp.fFoVHalf -= 0.1f;
+        cfp.setfFoVHalf(cfp.getfFoVHalf()-0.1f);
     }
     else if (direction == 10)
     {
         //cfp.fFoVHalf += 0.2f * ticks;
-        cfp.fFoVHalf += 0.1f;
+         cfp.setfFoVHalf(cfp.getfFoVHalf()+0.1f);
 
-    }
-
+    } 
   }
-
 bool AngularSprite::mapCheck(int p_x, int p_y, SDL_Surface *toTest){
     
     SDL_LockSurface(toTest);
     Uint32 *pixels = (Uint32*)toTest->pixels;
     SDL_Color color;
 
+    float fFarX1 = cfp.getfWorldX() + cosf(cfp.getfWorldA() - cfp.getfFoVHalf() ) * cfp.getfFar();
+    float fFarY1 = cfp.getfWorldY() + sinf(cfp.getfWorldA() - cfp.getfFoVHalf() ) * cfp.getfFar();
+
+    float fNearX1 = cfp.getfWorldX() + cosf(cfp.getfWorldA() - cfp.getfFoVHalf() ) * cfp.getfNear();
+    float fNearY1 = cfp.getfWorldY() + sinf(cfp.getfWorldA() - cfp.getfFoVHalf() ) * cfp.getfNear();
+
+    float fFarX2 = cfp.getfWorldX() + cosf(cfp.getfWorldA() + cfp.getfFoVHalf() ) * cfp.getfFar();
+    float fFarY2 = cfp.getfWorldY() + sinf(cfp.getfWorldA() + cfp.getfFoVHalf() ) * cfp.getfFar();
+
+    float fNearX2 = cfp.getfWorldX() + cosf(cfp.getfWorldA() + cfp.getfFoVHalf() ) * cfp.getfNear();
+    float fNearY2 = cfp.getfWorldY() + sinf(cfp.getfWorldA() + cfp.getfFoVHalf() ) * cfp.getfNear();
     for(int x = p_x-2;x<= p_x+5; x++)
     {
         for(int y = p_y-2; y<= p_y+5; y++)
         {
-            float fFarX1 = cfp.fWorldX + cosf(cfp.fWorldA - cfp.fFoVHalf ) * cfp.fFar;
-            float fFarY1 = cfp.fWorldY + sinf(cfp.fWorldA - cfp.fFoVHalf ) * cfp.fFar;
-            
-            float fNearX1 = cfp.fWorldX + cosf(cfp.fWorldA - cfp.fFoVHalf ) * cfp.fNear;
-            float fNearY1 = cfp.fWorldY + sinf(cfp.fWorldA - cfp.fFoVHalf ) * cfp.fNear;
-            
-            float fFarX2 = cfp.fWorldX + cosf(cfp.fWorldA + cfp.fFoVHalf ) * cfp.fFar;
-            float fFarY2 = cfp.fWorldY + sinf(cfp.fWorldA + cfp.fFoVHalf ) * cfp.fFar;
-            
-            float fNearX2 = cfp.fWorldX + cosf(cfp.fWorldA + cfp.fFoVHalf ) * cfp.fNear;
-            float fNearY2 = cfp.fWorldY + sinf(cfp.fWorldA + cfp.fFoVHalf ) * cfp.fNear;
             
             float fSampleDepth = (float)y / ((float)worldHeight / 2.0f);
             float fSampleWidth = (float)x / (float)worldWidth;
@@ -279,11 +320,13 @@ bool AngularSprite::mapCheck(int p_x, int p_y, SDL_Surface *toTest){
 
 float AngularSprite::GrassVelocity(int p_x, int p_y, SDL_Surface *g)
 {
-    
+   
     if(mapCheck(p_x, p_y, g))
     {
+       
       return 0.2f;
     }
+    
     return 0.5f;
 }
 bool AngularSprite::CheckNewValue(int p_x, int p_y, SDL_Surface *b)
@@ -298,7 +341,6 @@ bool AngularSprite::CheckNewValue(int p_x, int p_y, SDL_Surface *b)
     }
     return true;
 }
-
 
 void AngularSprite::draw(SDL_Renderer *renderer) const{
 
@@ -318,18 +360,18 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
   // Create Frustum corner points
     
 
-    float fFarX1 = cfp.fWorldX + cosf(cfp.fWorldA - cfp.fFoVHalf ) * cfp.fFar;
-    float fFarY1 = cfp.fWorldY + sinf(cfp.fWorldA - cfp.fFoVHalf ) * cfp.fFar;
+    float fFarX1 = cfp.getfWorldX() + cosf(cfp.getfWorldA() - cfp.getfFoVHalf() ) * cfp.getfFar();
+    float fFarY1 = cfp.getfWorldY() + sinf(cfp.getfWorldA() - cfp.getfFoVHalf() ) * cfp.getfFar();
 
-    float fNearX1 = cfp.fWorldX + cosf(cfp.fWorldA - cfp.fFoVHalf ) * cfp.fNear;
-    float fNearY1 = cfp.fWorldY + sinf(cfp.fWorldA - cfp.fFoVHalf ) * cfp.fNear;
+    float fNearX1 = cfp.getfWorldX() + cosf(cfp.getfWorldA() - cfp.getfFoVHalf() ) * cfp.getfNear();
+    float fNearY1 = cfp.getfWorldY() + sinf(cfp.getfWorldA() - cfp.getfFoVHalf() ) * cfp.getfNear();
 
-    float fFarX2 = cfp.fWorldX + cosf(cfp.fWorldA + cfp.fFoVHalf ) * cfp.fFar;
-    float fFarY2 = cfp.fWorldY + sinf(cfp.fWorldA + cfp.fFoVHalf ) * cfp.fFar;
+    float fFarX2 = cfp.getfWorldX() + cosf(cfp.getfWorldA() + cfp.getfFoVHalf() ) * cfp.getfFar();
+    float fFarY2 = cfp.getfWorldY() + sinf(cfp.getfWorldA() + cfp.getfFoVHalf() ) * cfp.getfFar();
 
-    float fNearX2 = cfp.fWorldX + cosf(cfp.fWorldA + cfp.fFoVHalf ) * cfp.fNear;
-    float fNearY2 = cfp.fWorldY + sinf(cfp.fWorldA + cfp.fFoVHalf ) * cfp.fNear;
-   
+    float fNearX2 = cfp.getfWorldX() + cosf(cfp.getfWorldA() + cfp.getfFoVHalf() ) * cfp.getfNear();
+    float fNearY2 = cfp.getfWorldY() + sinf(cfp.getfWorldA() + cfp.getfFoVHalf() ) * cfp.getfNear();
+
     SDL_LockSurface(surface3);
 
     Uint32 *pixels1 = (Uint32*)sky->pixels;
@@ -384,9 +426,9 @@ void AngularSprite::draw(SDL_Renderer *renderer) const{
         }
         else
         {
-            Uint32 pixel2 = pixels2[(int(fSampleY) * track->pitch / 4) + int(fSampleX)];
-            SDL_GetRGBA(pixel2, track->format, &color.r, &color.g, &color.b, &color.a);
-            drawPixelColor(x, y + worldHeight/2, color.r, color.g, color.b);
+           Uint32 pixel2 = pixels2[(int(fSampleY) * track->pitch / 4) + int(fSampleX)];
+          SDL_GetRGBA(pixel2, track->format, &color.r, &color.g, &color.b, &color.a);
+          drawPixelColor(x, y + worldHeight/2, color.r, color.g, color.b);
         }
         //std::cout<<(int(fSampleY) * sky->pitch / 4) + int(fSampleX)<<std::endl;
         //std::cout<<(int(fSampleY) * track->pitch / 4) + int(fSampleX)<<std::endl;

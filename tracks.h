@@ -24,6 +24,7 @@ public:
     SDL_Surface* getJump();
     SDL_Surface* getLava();
     SDL_Surface* getEmpty();
+    SDL_Surface* getStart();
 
 private:
     std::string name;
@@ -38,6 +39,7 @@ private:
     SDL_Surface *jump;
     SDL_Surface *lava;
     SDL_Surface *empty;
+    SDL_Surface *start;
 
 };
 #endif

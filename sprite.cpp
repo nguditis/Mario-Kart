@@ -18,8 +18,8 @@ Sprite::Sprite(const string& n, const Vector2f& pos, const Vector2f& vel,
                const Image* img):
   Drawable(n, pos, vel), 
   image( img ),
-  worldWidth(Gamedata::getInstance().getXmlInt("background/width")),
-  worldHeight(Gamedata::getInstance().getXmlInt("background/height"))
+  worldWidth(Gamedata::getInstance().getXmlInt("view/width")),
+  worldHeight(Gamedata::getInstance().getXmlInt("view/height"))
 { }
 
 Sprite::Sprite(const std::string& name) :
@@ -31,15 +31,15 @@ Sprite::Sprite(const std::string& name) :
                     Gamedata::getInstance().getXmlInt(name+"/speedY")) 
            ),
   image( ImageFactory::getInstance().getImage(name) ),
-  worldWidth(Gamedata::getInstance().getXmlInt("background/width")),
-  worldHeight(Gamedata::getInstance().getXmlInt("background/height"))
+  worldWidth(Gamedata::getInstance().getXmlInt("view/width")),
+  worldHeight(Gamedata::getInstance().getXmlInt("view/height"))
 { }
 
 Sprite::Sprite(const Sprite& s) :
   Drawable(s), 
   image(s.image),
-  worldWidth(Gamedata::getInstance().getXmlInt("background/width")),
-  worldHeight(Gamedata::getInstance().getXmlInt("background/height"))
+  worldWidth(Gamedata::getInstance().getXmlInt("view/width")),
+  worldHeight(Gamedata::getInstance().getXmlInt("view/height"))
 { }
 
 Sprite& Sprite::operator=(const Sprite& rhs) {

@@ -30,8 +30,6 @@ void Viewport::setObjectToTrack(const Drawable *obj) {
 
 void Viewport::draw() const {
   //std::cout<<"drawing viewport"<<std::endl;
-  IoMod::getInstance().
-    writeText("Tracking: "+objectToTrack->getName(), msgPos[0], msgPos[1]);
 }
 
 void Viewport::update() {

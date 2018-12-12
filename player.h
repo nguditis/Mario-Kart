@@ -4,8 +4,6 @@
 #include <vector>
 #include <cmath>
 #include "drawable.h"
-#include "collisionStrategy.h"
-
 
 class Player : public Drawable {
 public:

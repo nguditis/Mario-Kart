@@ -8,21 +8,21 @@ LDFLAGS = `sdl2-config --libs` -lm -lexpat -lSDL2_ttf -lSDL2_image
 OBJS = \
   renderContext.o \
 	ioMod.o \
+	FrustumPoints.o \
 	parseXML.o \
 	gameData.o \
 	viewport.o \
-	BackGround.o \
 	spriteSheet.o \
+	tracks.o \
 	image.o \
+	menu.o \
+	menuEngine.o \
+	sprite.o \
 	imageFactory.o \
 	frameGenerator.o \
-	sprite.o \
-	multisprite.o \
-	FrustumPoints.o \
 	AngularSprite.o \
-	twowaysprite.o \
 	vector2f.o \
-	tracks.o \
+	Players.o \
 	player.o \
 	clock.o \
 	engine.o \

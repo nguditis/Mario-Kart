@@ -5,6 +5,7 @@
 #include <SDL.h>
 #include "SDL_image.h"
 #include "FrustumPoints.h"
+#include <map>
 #include "tracks.h"
 #include <map>
 class AngularSprite : public Drawable {
@@ -12,34 +13,31 @@ public:
     AngularSprite(const std::string&);
     AngularSprite(const std::string&,  Tracks&);
     AngularSprite(const AngularSprite&);
-
-    virtual void draw() const {};
-    virtual void draw(SDL_Renderer *renderer) const;
-    virtual void update(Uint32 ticks);
-    virtual void update(Uint32 ticks, int direction, float scale = 0.2f);
+  virtual void draw() const {};
+  virtual void draw(SDL_Renderer *renderer) const;
+  virtual void update(Uint32 ticks) ;
+  virtual void update(Uint32 ticks, int direction, float factor = 0.2f) ;
   //virtual void update(Uint32 ticks, const SDL_Renderer *renderer) ;
 
-    virtual const Image* getImage() const {
-      return image;
-    }
-    
-    int getScaledWidth()  const {
-      return getScale()*image->getWidth();
-    }
-    
+  virtual const Image* getImage() const {
+    return image;
+  }
+  int getScaledWidth()  const {
+    return getScale()*image->getWidth();
+  }
   int getScaledHeight()  const {
-      return getScale()*image->getHeight();
+    return getScale()*image->getHeight();
   }
-    
   virtual const SDL_Surface* getSurface() const {
-      return image->getSurface();
+    return image->getSurface();
   }
-    virtual bool checkVelocity(Uint32 ticks, int direction, float p_x, float p_y, float factor);
-    bool CheckNewValue(int x, int y, SDL_Surface *s);
+  virtual bool checkVelocity(Uint32 ticks, int direction, float p_x, float p_y, float factor);
+  bool checkLap(float p_x, float p_y, SDL_Surface *s);
+  bool CheckNewValue(int x, int y, SDL_Surface *s);
 
-    float GrassVelocity(int x, int y, SDL_Surface *s);
+  float GrassVelocity(int x, int y, SDL_Surface *s);
     
-    bool mapCheck(int x, int y, SDL_Surface *toTest);
+  bool mapCheck(int x, int y, SDL_Surface *toTest);
 
   
 protected:
@@ -56,10 +54,11 @@ protected:
     SDL_Surface *jump;
     SDL_Surface *lava;
     SDL_Surface *empty;
+    SDL_Surface *start;
 
   int worldWidth;
   int worldHeight;
-  FrustumPoints cfp;
+  FrustumPoints &cfp;
   AngularSprite& operator=(const AngularSprite&);
 };
 #endif

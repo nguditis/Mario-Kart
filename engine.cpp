@@ -4,19 +4,12 @@
 #include <string>
 #include <random>
 #include <iomanip>
-#include "sprite.h"
-#include "multisprite.h"
-#include "twowaysprite.h"
 #include "gameData.h"
 #include "engine.h"
 #include "frameGenerator.h"
 #include "AngularSprite.h"
 #include "player.h"
-
-
-
-int currentCourse;
-
+#include "Players.h"
 
 Engine::~Engine() {
   for(auto track: ground)
@@ -31,14 +24,19 @@ Engine::Engine() :
   renderer( rc.getRenderer() ),
   viewport( Viewport::getInstance() ),
   roads({Tracks("Mario_Circut_1")}),
-  ground({new AngularSprite("road", roads[0] ), new Player("Mario")}),
-  makeVideo( false)
+  ground({new AngularSprite("road", roads[0] ), new Player("Mario"), new Players("Luigi")/*(new Players("Koopa")*/}),
+  menuEngine(),
+  menuMsgLoc(
+    Vector2f( Gamedata::getInstance().getXmlInt("menu/msg/x"), 
+              Gamedata::getInstance().getXmlInt("menu/msg/y") )
+  ),
+  //pixels(std::vector< unsigned char > ( Viewport::getInstance().getWidth() * Viewport::getInstance().getHeight() * 4, 0 )),
+  makeVideo( false),
+  Loop(0)
 {
-  
   Viewport::getInstance().setObjectToTrack(ground[0]);
   std::cout << "Loading complete" << std::endl;
-  int count = 0;
-
+  //count = 0;
 }
 
 Engine::Engine(std::vector<Tracks> t, int c) :
@@ -49,8 +47,14 @@ clock( Clock::getInstance() ),
 renderer( rc.getRenderer() ),
 viewport( Viewport::getInstance() ),
 roads(t),
-ground({new AngularSprite("road", roads[c] ), new Player("Mario")}),
-makeVideo( false)
+ground({new AngularSprite("road", roads[c] ), new Player("Mario")/*,new Players("Luigi")*/}),
+menuEngine(),
+  menuMsgLoc(
+    Vector2f( Gamedata::getInstance().getXmlInt("menu/msg/x"), 
+              Gamedata::getInstance().getXmlInt("menu/msg/y") )
+  ),
+makeVideo( false),
+Loop(0)
 {
     Viewport::getInstance().setObjectToTrack(ground[0]);
     //std::cout << "Loading complete" << std::endl;
@@ -61,35 +65,63 @@ makeVideo( false)
 
 }
 
-
 void Engine::draw() const {
   //for(auto track: ground)
+ // std::cout<<"Drawing";
   ground[0]->draw(renderer);
   ground[1]->setScale(6);
 
   ground[1]->draw();
-
+  //ground[2]->setScale(4);
+  //ground[2]->draw();
+ // ground[3]->draw();
+  
   int fps = 0;
   std::stringstream ss;
 
   std::string name = "Varsha and Nathan";
   fps = clock.getFps();
   ss << "Current FPS: " << fps;
-
-  //std::cout<<"drawing engine"<<std::endl;
+ 
   SDL_Color color = {255,0,0,255};
-  IoMod::getInstance().writeText(ss.str(), 10, 50);
-  IoMod::getInstance().writeText(name, 10, viewport.getHeight()-30, color); //overloaded function
+  IoMod::getInstance().writeText(ss.str(), 10, 20);
+  int totalSeconds = clock.getSeconds();//overloaded function
+  int minutes = (int)totalSeconds/60;
+  int seconds = (int)totalSeconds%60;
+  std::stringstream tt;
+  if(seconds<10)
+    tt<< "Time Elapsed: " << minutes <<":0"<<seconds;
+  else
+    tt<< "Time Elapsed: " << minutes <<":"<<seconds;
 
+  IoMod::getInstance().writeText(tt.str(), 750, 20, color);
+  tt.str(std::string());
+  tt<< "Current Loop: "<<Loop;
+   //SDL_Color color = {255,0,0,255};
+  
+  IoMod::getInstance().writeText(tt.str(), 750, 50, color);
+  color = {0,0,0,255};
+  IoMod::getInstance().writeText(name, 10, viewport.getHeight()-30, color); 
+  //IoMod::getInstance().writeText("Press 'm' for menu", menuMsgLoc[0], menuMsgLoc[1]);
+  
+   //IoMod::getInstance().writeText("Time Elapsed", 900, viewport.getHeight()-30, color);/
   viewport.draw();
   SDL_RenderPresent(renderer);
 }
 
 void Engine::update(Uint32 ticks) {
-  //std::cerr << "called engine update" << std::endl;
 
-  //ground[1]-> update(ticks);
-   // viewport.update(); // always update viewport last
+    int p_x = static_cast<Player*>(ground[1])->getX();
+    int p_y = static_cast<Player*>(ground[1])->getY();
+    int totalSeconds = clock.getSeconds();//overloaded function
+    //int seconds = (int)totalSeconds%60;
+    //if(totalSeconds%100==0)
+    //static_cast<Players*>(ground[2])->update(ticks, p_x, p_y);
+    //static_cast<Players*>(ground[3])->update(ticks, p_x, p_y);
+    if(static_cast<AngularSprite*>(ground[0])->checkLap(p_x,p_y,roads[currentCourse].getStart()))
+      Loop++;
+    viewport.update(); 
+  // always update viewport last
 }
 
 void Engine::play() {
@@ -103,6 +135,18 @@ void Engine::play() {
     while ( SDL_PollEvent(&event) ) {
       keystate = SDL_GetKeyboardState(NULL);
       if (event.type ==  SDL_QUIT) { done = true; break; }
+      /*if ( keystate[SDL_SCANCODE_M] || keystate[SDL_SCANCODE_O] ) {
+          clock.pause();
+          menuEngine.play();
+          // I've left the next two statements here for your debugging:
+          // int option = menuEngine.getOptionChoice();
+          // std::cout << "OPTION: " << option << std::endl;
+          if ( int track = menuEngine.getTrackNumber() ) {
+            currentCourse = track;
+            Loop = 0;
+          }
+          clock.unpause();
+        }*/
       if(event.type == SDL_KEYDOWN) {
         if (keystate[SDL_SCANCODE_ESCAPE] || keystate[SDL_SCANCODE_Q]) {
           done = true;
