@@ -119,7 +119,9 @@ void Engine::update(Uint32 ticks) {
     //static_cast<Players*>(ground[2])->update(ticks, p_x, p_y);
     //static_cast<Players*>(ground[3])->update(ticks, p_x, p_y);
     if(static_cast<AngularSprite*>(ground[0])->checkLap(p_x,p_y,roads[currentCourse].getStart()))
-      Loop++;
+    {
+        Loop++;        
+    }
     viewport.update(); 
   // always update viewport last
 }

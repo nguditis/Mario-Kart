@@ -48,7 +48,7 @@
           <lava>assets/tracks/Bowser_Castle_1/Bowser_Castle_1_lava.png</lava>
           <boundry>assets/tracks/Bowser_Castle_1/Bowser_Castle_1_boundry.png</boundry>
           <jump>assets/tracks/Bowser_Castle_1/Bowser_Castle_1_jump.png</jump>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Bowser_Castle_1/Bowser_Castle_1_track_start.png</start>
       </Bowser_Castle_1>
       <Bowser_Castle_2>
           <full>assets/tracks/Bowser_Castle_2/Bowser_Castle_2_track_full.png</full>
@@ -56,7 +56,7 @@
           <lava>assets/tracks/Bowser_Castle_2/Bowser_Castle_2_lava.png</lava>
           <boundry>assets/tracks/Bowser_Castle_2/Bowser_Castle_2_boundry.png</boundry>
           <jump>assets/tracks/Bowser_Castle_2/Bowser_Castle_2_jump.png</jump>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Bowser_Castle_2/Bowser_Castle_2_track_start.png</start>
       </Bowser_Castle_2>
       <Bowser_Castle_3>
           <full>assets/tracks/Bowser_Castle_3/Bowser_Castle_3_track_full.png</full>
@@ -64,21 +64,21 @@
           <lava>assets/tracks/Bowser_Castle_3/Bowser_Castle_3_lava.png</lava>
           <boundry>assets/tracks/Bowser_Castle_3/Bowser_Castle_3_boundry.png</boundry>
           <jump>assets/tracks/Bowser_Castle_3/Bowser_Castle_3_jump.png</jump>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Bowser_Castle_3/Bowser_Castle_3_track_start.png</start>
       </Bowser_Castle_3>
       <Choco_Island_1>
           <full>assets/tracks/Choco_Island_1/Choco_Island_1_track_full.png</full>
           <track>assets/tracks/Choco_Island_1/Choco_Island_1_track.png</track>
           <dirt>assets/tracks/Choco_Island_1/Choco_Island_1_dirt.png</dirt>
           <boundry>assets/tracks/Choco_Island_1/Choco_Island_1_boundry.png</boundry>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Choco_Island_1/Choco_Island_1_track_start.png</start>
       </Choco_Island_1>
       <Choco_Island_2>
           <full>assets/tracks/Choco_Island_2/Choco_Island_2_track_full.png</full>
           <track>assets/tracks/Choco_Island_2/Choco_Island_2_track.png</track>
           <dirt>assets/tracks/Choco_Island_2/Choco_Island_2_dirt.png</dirt>
           <boundry>assets/tracks/Choco_Island_2/Choco_Island_2_boundry.png</boundry>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Choco_Island_2/Choco_Island_2_track_start.png</start>
       </Choco_Island_2>
       <Donut_Plains_1>
           <full>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_full.png</full>
@@ -94,7 +94,7 @@
           <water>assets/tracks/Donut_Plains_2/Donut_Plains_2_water.png</water>
           <boundry>assets/tracks/Donut_Plains_2/Donut_Plains_2_boundry.png</boundry>
           <grass>assets/tracks/Donut_Plains_2/Donut_Plains_2_grass.png</grass>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Donut_Plains_2/Donut_Plains_2_track_start.png</start>
       </Donut_Plains_2>
       <Donut_Plains_3>
           <full>assets/tracks/Donut_Plains_3/Donut_Plains_3_track_full.png</full>
@@ -102,7 +102,7 @@
           <water>assets/tracks/Donut_Plains_3/Donut_Plains_3_water.png</water>
           <boundry>assets/tracks/Donut_Plains_3/Donut_Plains_3_boundry.png</boundry>
           <grass>assets/tracks/Donut_Plains_3/Donut_Plains_3_grass.png</grass>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Donut_Plains_3/Donut_Plains_3_track_start.png</start>
       </Donut_Plains_3>
       <Ghost_Valley_1>
           <full>assets/tracks/Ghost_Valley_1/Ghost_Valley_1_track_full.png</full>
@@ -110,7 +110,7 @@
           <boundry>assets/tracks/Ghost_Valley_1/Ghost_Valley_1_boundry.png</boundry>
           <jump>assets/tracks/Ghost_Valley_1/Ghost_Valley_1_jump.png</jump>
           <empty>assets/tracks/Ghost_Valley_1/Ghost_Valley_1_empty.png</empty>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Ghost_Valley_1/Ghost_Valley_1_track_start.png</start>
       </Ghost_Valley_1>
       <Ghost_Valley_2>
           <full>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_track_full.png</full>
@@ -118,7 +118,7 @@
           <boundry>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_boundry.png</boundry>
           <jump>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_jump.png</jump>
           <empty>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_empty.png</empty>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Ghost_Valley_2/Ghost_Valley_2_track_start.png</start>
 
       </Ghost_Valley_2>
       <Ghost_Valley_3>
@@ -127,7 +127,7 @@
           <boundry>assets/tracks/Ghost_Valley_3/Ghost_Valley_3_boundry.png</boundry>
           <jump>assets/tracks/Ghost_Valley_3/Ghost_Valley_3_jump.png</jump>
           <empty>assets/tracks/Ghost_Valley_3/Ghost_Valley_3_empty.png</empty>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Ghost_Valley_3/Ghost_Valley_3_track_start.png</start>
       </Ghost_Valley_3>
       <Koopa_Beach_1>
           <full>assets/tracks/Koopa_Beach_1/Koopa_Beach_1_track_full.png</full>
@@ -135,7 +135,7 @@
           <darkWater>assets/tracks/Koopa_Beach_1/Koopa_Beach_1_dark_water.png</darkWater>
           <boundry>assets/tracks/Koopa_Beach_1/Koopa_Beach_1_boundry.png</boundry>
           <lightWater>assets/tracks/Koopa_Beach_1/Koopa_Beach_1_light_water.png</lightWater>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Koopa_Beach_1/Koopa_Beach_1_track_start.png</start>
       </Koopa_Beach_1>
       <Koopa_Beach_2>
           <full>assets/tracks/Koopa_Beach_2/Koopa_Beach_2_track_full.png</full>
@@ -143,7 +143,7 @@
           <darkWater>assets/tracks/Koopa_Beach_2/Koopa_Beach_2_dark_water.png</darkWater>
           <boundry>assets/tracks/Koopa_Beach_2/Koopa_Beach_2_boundry.png</boundry>
           <lightWater>assets/tracks/Koopa_Beach_2/Koopa_Beach_2_light_water.png</lightWater>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Koopa_Beach_2/Koopa_Beach_2_track_start.png</start>
       </Koopa_Beach_2>
       <Mario_Circut_1>
           <full>assets/tracks/Mario_Circut_1/Mario_Circut_1_track_full.png</full>
@@ -151,7 +151,7 @@
           <grass>assets/tracks/Mario_Circut_1/Mario_Circut_1_grass.png</grass>
           <boundry>assets/tracks/Mario_Circut_1/Mario_Circut_1_boundry.png</boundry>
           <dirt>assets/tracks/Mario_Circut_1/Mario_Circut_1_dirt.png</dirt>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Mario_Circut_1/Mario_Circut_1_track_start.png</start>
       </Mario_Circut_1>
       <Mario_Circut_2>
           <full>assets/tracks/Mario_Circut_2/Mario_Circut_2_track_full.png</full>
@@ -159,7 +159,7 @@
           <grass>assets/tracks/Mario_Circut_2/Mario_Circut_2_grass.png</grass>
           <boundry>assets/tracks/Mario_Circut_2/Mario_Circut_2_boundry.png</boundry>
           <dirt>assets/tracks/Mario_Circut_2/Mario_Circut_2_dirt.png</dirt>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Mario_Circut_2/Mario_Circut_2_track_start.png</start>
       </Mario_Circut_2>
       <Mario_Circut_3>
           <full>assets/tracks/Mario_Circut_3/Mario_Circut_3_track_full.png</full>
@@ -167,7 +167,7 @@
           <grass>assets/tracks/Mario_Circut_3/Mario_Circut_3_grass.png</grass>
           <boundry>assets/tracks/Mario_Circut_3/Mario_Circut_3_boundry.png</boundry>
           <dirt>assets/tracks/Mario_Circut_3/Mario_Circut_3_dirt.png</dirt>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Mario_Circut_3/Mario_Circut_3_track_start.png</start>
       </Mario_Circut_3>
       <Mario_Circut_4>
           <full>assets/tracks/Mario_Circut_4/Mario_Circut_4_track_full.png</full>
@@ -175,27 +175,27 @@
           <grass>assets/tracks/Mario_Circut_4/Mario_Circut_4_grass.png</grass>
           <boundry>assets/tracks/Mario_Circut_4/Mario_Circut_4_boundry.png</boundry>
           <dirt>assets/tracks/Mario_Circut_4/Mario_Circut_4_dirt.png</dirt>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Mario_Circut_4/Mario_Circut_4_track_start.png</start>
       </Mario_Circut_4>
       <Rainbow_Road>
           <full>assets/tracks/Rainbow_Road/Rainbow_Road_track_full.png</full>
           <track>assets/tracks/Rainbow_Road/Rainbow_Road_track.png</track>
           <empty>assets/tracks/Rainbow_Road/Rainbow_Road_empty.png</empty>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Rainbow_Road/Rainbow_Road_track_start.png</start>
       </Rainbow_Road>
       <Vanilla_Lake_1>
           <full>assets/tracks/Vanilla_Lake_1/Vanilla_Lake_1_track_full.png</full>
           <track>assets/tracks/Vanilla_Lake_1/Vanilla_Lake_1_track.png</track>
           <water>assets/tracks/Vanilla_Lake_1/Vanilla_Lake_1_water.png</water>
           <boundry>assets/tracks/Vanilla_Lake_1/Vanilla_Lake_1_boundry.png</boundry>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Vanilla_Lake_1/Vanilla_Lake_1_track_start.png</start>
       </Vanilla_Lake_1>
       <Vanilla_Lake_2>
           <full>assets/tracks/Vanilla_Lake_2/Vanilla_Lake_2_track_full.png</full>
           <track>assets/tracks/Vanilla_Lake_2/Vanilla_Lake_2_track.png</track>
           <water>assets/tracks/Vanilla_Lake_2/Vanilla_Lake_2_water.png</water>
           <boundry>assets/tracks/Vanilla_Lake_2/Vanilla_Lake_2_boundry.png</boundry>
-          <start>assets/tracks/Donut_Plains_1/Donut_Plains_1_track_start.png</start>
+          <start>assets/tracks/Vanilla_Lake_2/Vanilla_Lake_2_track_start.png</start>
       </Vanilla_Lake_2>
   </tracks>
 

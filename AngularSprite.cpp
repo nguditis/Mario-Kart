@@ -38,7 +38,7 @@ inline namespace {
   }
 }
 
-AngularSprite::AngularSprite( const std::string& name) :
+/*AngularSprite::AngularSprite( const std::string& name) :
   Drawable(name,
            Vector2f(Gamedata::getInstance().getXmlInt(name+"/startLoc/x"),
                     Gamedata::getInstance().getXmlInt(name+"/startLoc/y")),
@@ -50,13 +50,13 @@ AngularSprite::AngularSprite( const std::string& name) :
   sky( IMG_Load(Gamedata::getInstance().getXmlStr("sky/file").c_str())),
   grass( IMG_Load(Gamedata::getInstance().getXmlStr("road/tracks/Donut_Plains_1/grass").c_str())),
   bounds( IMG_Load(Gamedata::getInstance().getXmlStr("road/tracks/Donut_Plains_1/boundry").c_str())),
-  start( IMG_Load(Gamedata::getInstance().getXmlStr("road/tracks/Donut_Plains_1/track_start").c_str())),
+  start( IMG_Load(Gamedata::getInstance().getXmlStr("road/tracks/Donut_Plains_1/start").c_str())),
   worldWidth(Gamedata::getInstance().getXmlInt("background/width")),
   worldHeight(Gamedata::getInstance().getXmlInt("background/height")),
   cfp (FrustumPoints::getInstance())
  {
 
- }
+ } */
 
 AngularSprite::AngularSprite( const std::string& name,  Tracks& t) :
 Drawable(name,
